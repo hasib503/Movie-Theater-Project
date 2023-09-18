@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.primary-btn-bg {
+  @apply bg-gradient-to-br from-[#4b004a] to-[#ff0026] text-white;
+}

@@ -18,13 +18,13 @@ const Footer = () => {
                     <div className='p-2  md:p-10 flex flex-row justify-between items-center'>
                         <div className='flex flex-row items-center gap-4'>
                             <img className='' src={mainLogo} width='40' height='20' alt="logo" />
-                            <p className='text-white font-bold text-2xl'>Movie Theater</p>
+                            <p className='text-white font-bold text-2xl hidden md:block'>Movie Theater</p>
                         </div>
                         <div>
 
-                            <div className='text-white flex flex-row justify-center items-center gap-8'>
+                            <div className='text-white md:flex flex-row justify-center items-center gap-8'>
                                 <div>
-                                    <p className='text-slate-600'>Help/Privacy</p>
+                                    <p className='text-slate-600 hidden md:block'>Help/Privacy</p>
                                 </div>
                                 <div className='flex flex-row justify-center items-center gap-2'>
                                     <AiOutlineTwitter className='icon'></AiOutlineTwitter>
@@ -36,7 +36,7 @@ const Footer = () => {
                         </div>
                     </div>
                     <hr className='mb-8'></hr>
-                    <div className='grid grid-clos-1 md:grid-cols-2 lg:grid-cols-4 gap-2'>
+                    <div className='grid grid-clos-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
                         <div>
                             <p className='mr-8 footer-text'>Buy movie tickets easily with Movie Theater system nationwide</p>
                             <div className='mt-4'>
@@ -95,7 +95,7 @@ const Footer = () => {
                     <hr className=' mt-8 '></hr>
 
                     <div className='copyright md:text-center mt-4'>
-                        <p>Copyright <span>{moment().format("YYYY")}</span> by Ovatheme.com</p>
+                        <p>Copyright <span>{moment().format("YYYY")}</span> by movietheater.com</p>
                     </div>
 
 

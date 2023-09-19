@@ -3,11 +3,13 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes/Routes.jsx";
+import { HelmetProvider } from 'react-helmet-async';
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <div className="bg-[#4b004a]">
+    <HelmetProvider>
       <RouterProvider router={router}></RouterProvider>
-    </div>
+    </HelmetProvider>
+
   </React.StrictMode>
 );

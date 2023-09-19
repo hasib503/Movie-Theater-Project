@@ -1,0 +1,5 @@
+.bg-image {
+  background-image: url("../../assets/404-image/page-not-found.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}

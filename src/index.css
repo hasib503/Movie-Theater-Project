@@ -5,3 +5,7 @@
 .primary-btn-bg {
   @apply bg-gradient-to-br from-[#4b004a] to-[#ff0026];
 }
+
+.primary-bg {
+  @apply bg-[#001232];
+}

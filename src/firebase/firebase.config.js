@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyBZke79LuBK_jBrt6yI4bJfN3HsK-MsJrM",
-    authDomain: "movie-theater-project-5c7c3.firebaseapp.com",
-    projectId: "movie-theater-project-5c7c3",
-    storageBucket: "movie-theater-project-5c7c3.appspot.com",
-    messagingSenderId: "593480187997",
-    appId: "1:593480187997:web:194a11a8d10a3d7f0b0db4"
+    apiKey: import.meta.env.VITE_apiKey,
+    authDomain: import.meta.env.VITE_authDomain,
+    projectId: import.meta.env.VITE_projectId,
+    storageBucket: import.meta.env.VITE_storageBucket,
+    messagingSenderId: import.meta.env.VITE_messagingSenderId,
+    appId: import.meta.env.VITE_appId
 };
 
 // Initialize Firebase

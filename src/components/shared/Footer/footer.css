@@ -1,3 +1,8 @@
+.bg{
+  background-color: #001232;
+}
+
+
 ul{
   margin-top: 24px;
 }
@@ -44,7 +49,7 @@ li:hover{
 }
 
 
-.footer-menu{
+/* .footer-menu{
     position: relative;
     width: 200px;
     height: 30px;
@@ -52,21 +57,21 @@ li:hover{
     overflow: hidden;
     
     
-}
+} */
 
-.footer-menu p{
+/* .footer-menu p{
   position: absolute;
   font-size: 20px;
   z-index: 2;
-}
+} */
 
 
-.footer-menu::before{
+/* .footer-menu::before{
     content: '';
     position: absolute;
     width: 100px;
     height: 25px;
-    /* background: linear-gradient(#90A4AE, #CFD8DC); */
+    background: linear-gradient(#90A4AE, #CFD8DC);
     background-color: #263238;
     animation: rotate 4s linear infinite;
 }
@@ -82,4 +87,4 @@ li:hover{
 
 
 
-
+ */

@@ -1,0 +1,37 @@
+[
+    {
+      "name": "Black & White Twins",
+      "image": "https://i.ibb.co/WBZTmD7/front-view-woman-working-as-ventriloquist.jpg",
+      "duration": "180 Mins",
+      "category": "Comedy"
+    },
+
+    {
+      "name": "The Scariest Dream",
+      "image": "https://i.ibb.co/XCLmw0b/halloween-wallpaper-with-zombie-hand.jpg",
+      "duration": "180 Mins",
+      "category": "Thriller"
+    },
+
+
+    {
+        "name": "The Witcher",
+        "image": "https://i.ibb.co/dkwRbcn/young-people-sitting-with-car-rabbit-masks-light-lamp-black-balloons.jpg",
+        "duration": "180 Mins",
+        "category": "Action"
+    },
+
+    {
+        "name": "Wrong Turns ",
+        "image": "https://i.ibb.co/mzgVrhC/spooky-scene-with-man-floating-indoors.jpg",
+        "duration": "180 Mins",
+        "category": "Thriller"
+    },
+
+    {
+        "name": "Wrong Turns ",
+        "image": "https://i.ibb.co/6N0GHcs/portrait-scary-clown.jpg",
+        "duration": "180 Mins",
+        "category": "Thriller"
+    }
+]    

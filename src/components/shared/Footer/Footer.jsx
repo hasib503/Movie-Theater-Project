@@ -13,9 +13,9 @@ const Footer = () => {
     return (
         <footer>
             
-            <div className='bg-zinc-950 p-10'>
+            <div className='bg p-10'>
                 <div className='max-w-6xl mx-auto '>
-                    <div className='p-2  md:p-10 flex flex-row justify-between items-center'>
+                    <div className='pb-2  md:pb-10 flex flex-row justify-between items-center'>
                         <div className='flex flex-row items-center gap-4'>
                             <img className='' src={mainLogo} width='40' height='20' alt="logo" />
                             <p className='text-white font-bold text-2xl hidden md:block'>Movie Theater</p>

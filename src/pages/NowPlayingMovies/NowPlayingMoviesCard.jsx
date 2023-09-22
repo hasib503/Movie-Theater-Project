@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const NowPlayingMoviesCard = ({ item }) => {
     const { name, image, duration, category } = item
@@ -16,7 +17,7 @@ const NowPlayingMoviesCard = ({ item }) => {
                         <p className='mb-4 text-fuchsia-600 text-sm'> <span>/</span> {duration}</p>
 
                     </div>
-
+                    <Link><button className='flex bg-gradient-to-r from-purple-600 to-red-400  text-center rounded-lg font-bold p-2'>Get Ticket</button></Link>
 
                 </div>
             </div>

@@ -4,7 +4,7 @@ import NowPlayingMoviesCard from './NowPlayingMoviesCard';
 const MovieTab = ({items}) => {
     return (
         <div>
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-14 mb-4'>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-14 mb-1'>
                 {
                     items.map((item, index) => <NowPlayingMoviesCard
                         key={index}

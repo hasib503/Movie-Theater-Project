@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import GetTicketModal from '../Modal/GetTicketModal';
 
 const NowPlayingMoviesCard = ({ item }) => {
     const { name, image, duration, category } = item
+
+    const [modal, setModal] = useState(false);
+
+    const closeModal = () => {
+        setModal(false)
+    }
+
     return (
         <div>
             <div className='rounded-xl shadow-lg p-6 bg-blue-950 text-center my-5 flex flex-col justify-center items-center'>
@@ -17,10 +25,12 @@ const NowPlayingMoviesCard = ({ item }) => {
                         <p className='mb-4 text-fuchsia-600 text-sm'> <span>/</span> {duration}</p>
 
                     </div>
-                    <Link><button className='flex bg-gradient-to-r from-purple-600 to-red-400  text-center rounded-lg font-bold p-2'>Get Ticket</button></Link>
+                    <Link><button onClick={() => setModal(true)} className='flex bg-gradient-to-r from-purple-600 to-red-400  text-center rounded-lg font-bold p-2'>Get Ticket</button></Link>
 
                 </div>
+             
             </div>
+          <GetTicketModal isModalOpen={modal} closeModal={closeModal}></GetTicketModal>
         </div>
     );
 };

@@ -24,7 +24,7 @@ const Footer = () => {
 
                             <div className='text-white md:flex flex-row justify-center items-center gap-8'>
                                 <div>
-                                    <p className='text-slate-600 hidden md:block'>Help/Privacy</p>
+                                    <p className='text-slate-400 hidden md:block'>Help/Privacy</p>
                                 </div>
                                 <div className='flex flex-row justify-center items-center gap-2'>
                                     <AiOutlineTwitter className='icon'></AiOutlineTwitter>
@@ -45,7 +45,7 @@ const Footer = () => {
                         </div>
                         <div>
                             <div className='footer-menu '>
-                                <p className='text-pink-600 font-semibold'>Links</p>
+                                <p className='text-pink-600 font-semibold text-xl'>Links</p>
                             </div>
                             <ul>
                                 <li>About</li>
@@ -58,7 +58,7 @@ const Footer = () => {
 
                         <div>
                             <div className='footer-menu'>
-                                <p className='text-pink-600 font-semibold'>Movies</p>
+                                <p className='text-pink-600 font-semibold text-xl'>Movies</p>
                             </div>
 
                             <ul>
@@ -72,7 +72,7 @@ const Footer = () => {
 
                         <div>
                             <div className='footer-menu'>
-                                <p className='text-pink-600 font-semibold'>Newsletter</p>
+                                <p className='text-pink-600 font-semibold text-xl'>Newsletter</p>
                             </div>
 
                             <div className='mt-8 footer-text'>
@@ -84,7 +84,7 @@ const Footer = () => {
                                         required
                                         placeholder='Email' />
 
-                                    <button className='bg-slate-800 rounded-full ml-2 p-2 mt-2 hover:bg-slate-500'><BsFillArrowUpRightCircleFill className=''></BsFillArrowUpRightCircleFill></button>
+                                    <button className='bg-slate-600 rounded-full ml-2 p-2 mt-2 hover:bg-slate-400'><BsFillArrowUpRightCircleFill className=''></BsFillArrowUpRightCircleFill></button>
                                 </form>
                             </div>
                         </div>

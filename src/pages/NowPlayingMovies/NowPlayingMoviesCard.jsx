@@ -10,7 +10,7 @@ const NowPlayingMoviesCard = ({ item }) => {
                 </div>
 
                 <div>
-                    <div className='text-fuchsia-600 font-bold'>{name}</div>
+                    <div className='text-fuchsia-600 font-bold text-2xl'>{name}</div>
                     <div className='flex flex-row gap-1'>
                         <p className='mb-4 text-fuchsia-600 text-sm'>{category}</p>
                         <p className='mb-4 text-fuchsia-600 text-sm'> <span>/</span> {duration}</p>

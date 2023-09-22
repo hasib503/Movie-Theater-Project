@@ -11,7 +11,7 @@ const TopFeaturedMovieData = ({ movie }) => {
                     <img src={image} alt="movie" className="w-[550px] h-[250px] mb-4 rounded-lg" />
                 </div>
 
-                <div className='md:bg-purple-100 md:w-[460px] md:p-6 md:-m-8 rounded-sm'>
+                <div className='md:bg-purple-100 md:w-[460px] md:p-5 md:-m-8 rounded-sm'>
                     <div className='text-fuchsia-600 font-bold text-2xl text-left'>{name}</div>
                     <div className='flex flex-row gap-1 mb-2'>
                         <p className=' text-fuchsia-600 text-sm'>{category}</p>

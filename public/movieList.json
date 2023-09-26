@@ -1,0 +1,33 @@
+{
+  "cover": "https://i.ibb.co/BsQrnNL/nun-2-cover.jpg",
+  "poster": "https://i.ibb.co/5h08N1k/the-nun-ii-2-poster.webp",
+  "name": "The Nun II",
+  "storyline": "A follow-up to the enigmatic gothic horror about a strong evil that haunts and causes supernatural harm to everybody it comes into contact with. After the events of the first film, the said powerful evil now begins to spread in 1956 throughout a town in France as word gets out that a priest has been violently murdered. A finished contemplative in her novitiate, Sister Irene, begins to investigate the murder, only to find a demon behind it -- the same evil that terrorized her in the original film as a nun -- Valak, whom she once again soon comes to encounter.",
+  "genre": ["Horror", "Mystery", "Thriller"],
+  "releaseDate": "8 September, 2023",
+  "runtime": "1 hour 50 minutes",
+  "category": ["2D", "3D"],
+  "language": "English",
+  "trailer": "https://www.youtube.com/watch?v=QF-oyCwaArU",
+  "imDb_rating": 8.8,
+  "Director": "Michael Chaves",
+  "Writer": ["Ian Goldberg", "Richard Naing", "Akela Cooper"],
+  "casts": [
+    {
+      "cast_name": "Jonas Bloquet",
+      "cast_image": "https://static.wikia.nocookie.net/1899-netflix/images/c/c8/Jonas_Bloquet.jpg/revision/latest?cb=20210506172715"
+    },
+    {
+      "cast_name": "Jonas Bloquet",
+      "cast_image": "https://static.wikia.nocookie.net/narnia/images/7/79/200px-Susanpevensie.jpg/revision/latest?cb=20110909112859"
+    },
+    {
+      "cast_name": "Storm Reid",
+      "cast_image": "https://facts.net/wp-content/uploads/2023/07/47-facts-about-storm-reid-1688396145.jpg"
+    },
+    {
+      "cast_name": "Anna Popplewell",
+      "cast_image": "https://static.wikia.nocookie.net/narnia/images/7/79/200px-Susanpevensie.jpg/revision/latest?cb=20110909112859"
+    }
+  ]
+}

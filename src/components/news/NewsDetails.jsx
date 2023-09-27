@@ -25,13 +25,13 @@ const NewsDetails = () => {
                     <div className='max-w-[800px] m-auto'>
                         <img className='rounded-md w-full' src={newsDetails?.cover} alt="" />
                     </div>
-                    <h2 className='mt-4 font-bold text-3xl text-slate-300'># {newsDetails?.title}</h2>
+                    <h2 className='mt-4 font-bold text-lg lg:text-3xl text-slate-300'># {newsDetails?.title}</h2>
                     <p className='mt-3 text-slate-400 text-justify'>{newsDetails?.description}</p>
                 </div>
 
 
                 <div className='lg:col-span-4 text-sm'>
-                    <div className='mt-2 mb-8'>
+                    <div className='lg:mt-2 mt-8 mb-8'>
                         <div className='flex gap-5 justify-center'>
                             <FaFacebook size={36} className='text-slate-500 hover:text-white hover:scale-110 hover:transition-all hover:duration-300 cursor-pointer'></FaFacebook>
                             <FaInstagram size={36} className='text-slate-500 hover:text-white hover:scale-110 hover:transition-all hover:duration-300 cursor-pointer'></FaInstagram>

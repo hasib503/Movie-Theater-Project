@@ -1,6 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import HomeBanner from "../../components/homeBanner/HomeBanner";
+import NewsSection from "../../components/news/NewsSection";
 
 const Home = () => {
   return (
@@ -12,6 +13,8 @@ const Home = () => {
 
       {/* Banner Section */}
       <HomeBanner></HomeBanner>
+      {/* News Section */}
+      <NewsSection></NewsSection>
     </>
   );
 };

@@ -20,7 +20,7 @@ const NewsSection = () => {
                 <div className='lg:col-span-3 text-sm'>
                     <div>
                         {news.map(eachNews => (
-                            <Link to={`/newsDetails/${eachNews._id}`} className='py-2 flex font-semibold text-slate-400 cursor-pointer hover:bg-black px-2' key={eachNews.title}>
+                            <Link to={`/newsDetails/${eachNews._id}`} className='py-2 flex font-semibold text-slate-400 cursor-pointer hover:scale-105 hover:duration-200 px-2' key={eachNews.title}>
                                 <img className='w-[100px] mr-4' src={eachNews.cover} alt="" />
                                 <div>
                                     <p>{eachNews.title}</p>

@@ -25,7 +25,7 @@ const NewsDetails = () => {
                     <div className='max-w-[800px] m-auto'>
                         <img className='rounded-md w-full' src={newsDetails?.cover} alt="" />
                     </div>
-                    <h2 className='mt-4 font-bold text-3xl text-slate-300'>{newsDetails?.title}</h2>
+                    <h2 className='mt-4 font-bold text-3xl text-slate-300'># {newsDetails?.title}</h2>
                     <p className='mt-3 text-slate-400 text-justify'>{newsDetails?.description}</p>
                 </div>
 
@@ -42,7 +42,7 @@ const NewsDetails = () => {
                     </div>
                     <div>
                         {news.map(eachNews => (
-                            <Link to={`/newsDetails/${eachNews._id}`} className='py-3 flex font-semibold text-slate-400 cursor-pointer hover:bg-black px-2' key={eachNews.title}>
+                            <Link to={`/newsDetails/${eachNews._id}`} className='py-3 flex font-semibold text-slate-400 cursor-pointer hover:scale-105 hover:duration-200 px-2' key={eachNews.title}>
                                 <img className='w-[100px] mr-4 rounded-md' src={eachNews.cover} alt="" />
                                 <div>
                                     <p>{eachNews.title}</p>

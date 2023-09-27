@@ -47,10 +47,6 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="navbar-end">
-            {/* search field */}
-            <div className="form-control inline-flex">
-              <input type="text" placeholder="Search" className="input input-bordered w-44 md:w-auto bg-[#26577C]" />
-            </div>
             {/* profile photo */}
             {/* In small device it will be hidden in large device it will be shown (only if there is logged in user) */}
             {user ? <div className="avatar lg:block hidden">

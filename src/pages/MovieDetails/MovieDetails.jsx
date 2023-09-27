@@ -15,8 +15,8 @@ const data = {
   language: "English",
   trailer: "https://www.youtube.com/watch?v=QF-oyCwaArU",
   imDb_rating: 8.8,
-  Director: "Michael Chaves",
-  Writer: ["Ian Goldberg", "Richard Naing", "Akela Cooper"],
+  director: "Michael Chaves",
+  writer: ["Ian Goldberg", "Richard Naing", "Akela Cooper"],
   casts: [
     {
       cast_name: "Jonas Bloquet",
@@ -49,16 +49,16 @@ const MovieDetails = () => {
           <Container>
             <div className="h-[550px] flex items-center">
               <div className="grid gird-cols-1 md:grid-cols-1 lg:grid-cols-3 w-full">
-                <div className="col-span-1 ">
-                  <div className="w-[350px] h-auto">
+                <div className="col-span-1">
+                  <div className="w-[400px]">
                     <img
-                      className="shadow-[rgba(0,_0,_0,_0.25)_0px_25px_50px_-12px]"
+                      className="shadow-[rgba(0,_0,_0,_0.25)_0px_25px_50px_-12px] "
                       src={data?.poster}
                       alt="Main Poster"
                     />
                   </div>
                 </div>
-                <div className="col-span-2 text-white space-y-4">
+                <div className="col-span-2 text-white space-y-4 lg:ml-10">
                   <h2 className="text-6xl ">{data?.name}</h2>
                   <div className="flex items-center py-3 space-x-5">
                     {data?.genre?.map((item, index) => (
@@ -73,17 +73,68 @@ const MovieDetails = () => {
                   <div>
                     <CircleRating rating={data.imDb_rating}></CircleRating>
                   </div>
+                  <div className="Other_info">
+                    <table className="table">
+                      <tbody>
+                        <tr className="border-b border-[#2f3f79] md:text-lg">
+                          <td className="w-[30%] pl-0 ">Language :</td>
+                          <td className="font-light">{data.language}</td>
+                        </tr>
+                        <tr className="border-b border-[#2f3f79] md:text-lg">
+                          <td className="w-[30%] pl-0">Release :</td>
+                          <td className="font-light">{data.releaseDate}</td>
+                        </tr>
+                        <tr className="border-b border-[#2f3f79] md:text-lg">
+                          <td className="w-[30%] pl-0">Run Time :</td>
+                          <td className="font-light">{data.runtime}</td>
+                        </tr>
+                        <tr className="border-b border-[#2f3f79] md:text-lg">
+                          <td className="w-[30%] pl-0">Director :</td>
+                          <td className="font-light">{data.director}</td>
+                        </tr>
+                        <tr className="border-b border-[#2f3f79] md:text-lg">
+                          <td className="w-[30%] pl-0">Writer :</td>
+                          <td className="font-light space-x-3">
+                            {data?.writer?.map((item, index) => (
+                              <span className="" key={index}>
+                                {item}
+                              </span>
+                            ))}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
           </Container>
         </div>
       </div>
+      {/* Movie Story Line */}
+      <div className="story_line">
+        <Container>
+          <div className="space-y-3">
+            <h6 className="text-2xl font-light">Story Line</h6>
+            <p>{data.storyline}</p>
+          </div>
+        </Container>
+      </div>
       {/* Cast section */}
       <Container>
-        <div className="backdrop-blur-lg hidden">
+        <div className="mb-3">
+          <h6 className="text-2xl font-light">All Casts</h6>
+        </div>
+        <div className="flex items-center space-x-5 pb-10">
           {data?.casts?.map((cast, index) => (
-            <p key={index}>{cast.cast_name}</p>
+            <div key={index}>
+              <img
+                className="w-[150px] h-[150px] rounded-full"
+                src={cast?.cast_image}
+                alt=""
+              />
+              <p className="text-lg mt-3 font-medium">{cast.cast_name}</p>
+            </div>
           ))}
         </div>
       </Container>

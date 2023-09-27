@@ -26,7 +26,7 @@ const NewsDetails = () => {
                         <img className='rounded-md w-full' src={newsDetails?.cover} alt="" />
                     </div>
                     <h2 className='mt-4 font-bold text-lg lg:text-3xl text-slate-300'># {newsDetails?.title}</h2>
-                    <p className='mt-3 text-slate-400 text-justify'>{newsDetails?.description}</p>
+                    <p className='mt-4 text-slate-500 text-justify'>{newsDetails?.description}</p>
                 </div>
 
 

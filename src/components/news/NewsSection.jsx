@@ -24,7 +24,7 @@ const NewsSection = () => {
                                 <img className='w-[100px] mr-4' src={eachNews.cover} alt="" />
                                 <div>
                                     <p>{eachNews.title}</p>
-                                    <p className='text-slate-500 mt-1'>By <span className='font-bold'>{eachNews.author}</span> <span>{eachNews.date}</span></p>
+                                    <p className='text-slate-500 mt-1 text-xs'>By <span className='font-bold'>{eachNews.author}</span> <span>{eachNews.date}</span></p>
                                 </div>
                             </Link>
                         ))}

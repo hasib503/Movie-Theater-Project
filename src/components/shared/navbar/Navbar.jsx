@@ -71,7 +71,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="">
+    <div className="z-50">
       <Container>
         <div className="navbar text-white font-semibold">
           <div className="navbar-start">

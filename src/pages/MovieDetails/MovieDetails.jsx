@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "../../components/container/Container";
 import CircleRating from "../../components/circleRating/CircleRating";
+import PlayIcon from "../../components/playIcon/PlayIcon";
+import "./style.css";
+import VideoPopUp from "../../components/VideoPopup/VideoPopUp";
 
 const data = {
   cover: "https://i.ibb.co/BsQrnNL/nun-2-cover.jpg",
@@ -41,25 +44,28 @@ const data = {
   ],
 };
 const MovieDetails = () => {
+  const [show, setShow] = useState(false);
+
   return (
     <div className="">
-      <div className="h-[550px] relative">
+      <div className="h-[900px] lg:h-[550px] relative">
         <img className="w-full object-cover h-full" src={data?.cover} alt="" />
         <div className="absolute  top-0 bg-[#001232] bg-opacity-80 w-full h-full">
           <Container>
             <div className="h-[550px] flex items-center">
-              <div className="grid gird-cols-1 md:grid-cols-1 lg:grid-cols-3 w-full">
-                <div className="col-span-1">
-                  <div className="w-[400px]">
+              <div className="grid gird-cols-1 md:grid-cols-1 lg:grid-cols-3 w-full h-full mt-10 lg:mt-0">
+                <div className="col-span-3 lg:col-span-1 ">
+                  <div className=" md:w-[400px]">
                     <img
-                      className="shadow-[rgba(0,_0,_0,_0.25)_0px_25px_50px_-12px] "
+                      className=" shadow-[rgba(0,_0,_0,_0.25)_0px_25px_50px_-12px] "
                       src={data?.poster}
                       alt="Main Poster"
                     />
                   </div>
                 </div>
-                <div className="col-span-2 text-white space-y-4 lg:ml-10">
-                  <h2 className="text-6xl ">{data?.name}</h2>
+                {/* Details content */}
+                <div className="col-span-3 lg:col-span-2 text-white space-y-4 lg:ml-10 mt-10 md:mt-0 ">
+                  <h2 className="md:text-6xl text-4xl">{data?.name}</h2>
                   <div className="flex items-center py-3 space-x-5">
                     {data?.genre?.map((item, index) => (
                       <span
@@ -70,8 +76,17 @@ const MovieDetails = () => {
                       </span>
                     ))}
                   </div>
-                  <div>
+                  <div className="flex items-center gap-5">
                     <CircleRating rating={data.imDb_rating}></CircleRating>
+                    <div
+                      className="playbtn"
+                      onClick={() => {
+                        setShow(true);
+                      }}
+                    >
+                      <PlayIcon></PlayIcon>
+                      <span className="text">Watch Trailer</span>
+                    </div>
                   </div>
                   <div className="Other_info">
                     <table className="table">
@@ -112,7 +127,7 @@ const MovieDetails = () => {
         </div>
       </div>
       {/* Movie Story Line */}
-      <div className="story_line">
+      <div className="story_line ">
         <Container>
           <div className="space-y-3">
             <h6 className="text-2xl font-light">Story Line</h6>
@@ -122,14 +137,14 @@ const MovieDetails = () => {
       </div>
       {/* Cast section */}
       <Container>
-        <div className="mb-3">
+        <div className="mb-3 ">
           <h6 className="text-2xl font-light">All Casts</h6>
         </div>
-        <div className="flex items-center space-x-5 pb-10">
+        <div className=" md:flex space-x-5 pb-10 justify-between space-y-5 lg:space-y-0">
           {data?.casts?.map((cast, index) => (
-            <div key={index}>
+            <div className=" flex-col justify-center items-center" key={index}>
               <img
-                className="w-[150px] h-[150px] rounded-full"
+                className=" w-[110px] h-[110px] lg:w-[150px] lg:h-[150px] rounded-full"
                 src={cast?.cast_image}
                 alt=""
               />
@@ -138,6 +153,9 @@ const MovieDetails = () => {
           ))}
         </div>
       </Container>
+      <VideoPopUp show={show} setShow={setShow} videoUrl={data.trailer}>
+        {" "}
+      </VideoPopUp>
     </div>
   );
 };

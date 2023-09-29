@@ -23,12 +23,25 @@ const SignUp = () => {
             .then(result => {
                 updateUserProfile(name, photoURL)
                     .then(() => {
-                        Swal.fire(
-                            'Good job!',
-                            'Log in successful!',
-                            'success'
-                        )
-                        navigate('/')
+                        const saveUser = { name: name, email: email }
+                        fetch('http://localhost:5000/users', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(saveUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.insertedId) {
+                                    Swal.fire(
+                                        'Good job!',
+                                        'Log in successful!',
+                                        'success'
+                                    )
+                                    navigate('/')
+                                }
+                            })
                     })
                     .catch(error => console.log(error))
             })
@@ -38,7 +51,7 @@ const SignUp = () => {
         <div className='bg-image'>
             <div className='bg-[#001232] bg-opacity-80 h-screen'>
                 <Helmet><title>Movie Theater | Sign Up</title></Helmet>
-                <h2 className='text-center font-bold py-8 text-5xl'>Sign Up</h2>
+                <h2 className='text-center font-bold py-8 text-3xl lg:text-5xl'>Sign Up</h2>
                 <form onSubmit={handleRegister} className='flex justify-center'>
                     <div>
                         <div className='mb-4'>

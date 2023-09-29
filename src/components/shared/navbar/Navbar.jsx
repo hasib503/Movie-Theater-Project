@@ -4,13 +4,22 @@ import { Link } from "react-router-dom";
 import mainLogo from "../../../assets/main-logo.png";
 import { FaUser } from "react-icons/fa";
 import { AuthContext } from "../../../provider/AuthProvider";
+import Swal from 'sweetalert2'
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
 
   const handleLogOut = () => {
     logOut()
-      .then(() => {})
+      .then(() => {
+        Swal.fire({
+          position: 'center-center',
+          icon: 'success',
+          title: 'Logout Successfully',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      })
       .catch((error) => console.log(error));
   };
 
@@ -57,16 +66,6 @@ const Navbar = () => {
           About Us
         </Link>
       </li>
-      {user && (
-        <li>
-          <Link
-            onClick={handleLogOut}
-            className="hover:bg-[#071952] hover:text-white"
-          >
-            Log Out
-          </Link>
-        </li>
-      )}
     </>
   );
 
@@ -109,10 +108,19 @@ const Navbar = () => {
             {/* profile photo */}
             {/* In small device it will be hidden in large device it will be shown (only if there is logged in user) */}
             {user ? (
-              <div className="avatar lg:block hidden">
-                <div className="w-10 mx-4 rounded-full ring ring-[#26577C] ring-offset-base-100 ring-offset-2">
-                  <img src={user.photoURL} />
-                </div>
+              <div className="dropdown dropdown-end">
+                <label tabIndex={0}>
+                  <div className="avatar">
+                    <div className="w-10 mx-4 rounded-full ring ring-[#26577C] ring-offset-base-100 ring-offset-2">
+                      <img src={user.photoURL} />
+                    </div>
+                  </div>
+                </label>
+                <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-[#001232] text-white flex gap-2 w-40 rounded-md">
+                  <Link className="hover:bg-[#071952] p-2"><a>Profile</a></Link>
+                  <Link className="hover:bg-[#071952] p-2"><a>Dashboard</a></Link>
+                  <Link onClick={handleLogOut} className="hover:bg-[#071952] p-2"><a>Logout</a></Link>
+                </ul>
               </div>
             ) : (
               <Link

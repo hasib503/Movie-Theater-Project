@@ -5,6 +5,7 @@ import Container from './../../components/container/Container';
 import OurJourney from './OurJourney';
 import OurTheaters from './OurTheaters';
 import PhotoGallery from './PhotoGallery';
+import Marquee from "react-fast-marquee";
 
 const AboutUs = () => {
     const [openJourney, setOpenJourney] = useState(true)
@@ -47,16 +48,22 @@ const AboutUs = () => {
                             to='/about-us'><p className='my-2 hover:bg-[#001232]'>Photo Gallery</p></Link>
                     </div>
                     <div className='mb-6 font-semibold text-lg bg-black p-6'>
-                        <h2 className='mb-4'>Upcoming Events</h2>
-                        <p className='my-2'>Event 1</p>
+                        <h2 className='mb-4 font-bold'>Upcoming Events</h2>
+                        <Marquee speed={40}>
+                            <p className='my-2'>---Our upcoming movie "The Nun 2" is running in all our theaters---</p>
+                        </Marquee>
                         <hr className='border-red-500' />
-                        <p className='my-2'>Event 2</p>
+                        <Marquee speed={40}>
+                            <p className='my-2'>---Grand Opening will be held in the 10 October, 2023---</p>
+                        </Marquee>
                         <hr className='border-red-500' />
-                        <p className='my-2'>Event 3</p>
+                        <Marquee speed={40}>
+                            <p className='my-2'>---Film star Leonardo Decaprion will visit Gulshan Theater for movie promotion---</p>
+                        </Marquee>
                         <hr className='border-red-500' />
-                        <p className='my-2'>Event 4</p>
-                        <hr className='border-red-500' />
-                        <p className='my-2'>Event 5</p>
+                        <Marquee speed={40}>
+                            <p className='my-2'>---Special discounts for the movie "The Phantom Dilux"---</p>
+                        </Marquee>
                     </div>
                 </div>
             </div>

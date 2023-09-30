@@ -6,6 +6,7 @@ import Login from "../pages/Login/Login";
 import SignUp from "./../pages/SignUp/SignUp";
 import MovieDetails from "../pages/MovieDetails/MovieDetails";
 import NewsDetails from './../components/news/NewsDetails';
+import AboutUs from "../pages/AboutUs/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs></AboutUs>,
       },
       {
         path: "/newsDetails/:id",

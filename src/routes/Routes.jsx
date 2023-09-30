@@ -6,6 +6,11 @@ import Login from "../pages/Login/Login";
 import SignUp from "./../pages/SignUp/SignUp";
 import MovieDetails from "../pages/MovieDetails/MovieDetails";
 import NewsDetails from './../components/news/NewsDetails';
+import ShowTime from "../pages/showTime/ShowTime";
+import TicketPrice from "../pages/ticketPrice/TicketPrice";
+import Membership from "../pages/membership/Membership";
+import FoodCorner from "../pages/foodCorner/FoodCorner";
+import AboutUs from "../pages/aboutUs/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +25,8 @@ const router = createBrowserRouter([
       {
         path: "/newsDetails/:id",
         element: <NewsDetails></NewsDetails>,
-        loader: ({ params }) => fetch(`http://localhost:5000/movieNewsList/${params.id}`)
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/movieNewsList/${params.id}`),
       },
       {
         path: "/login",
@@ -33,6 +39,26 @@ const router = createBrowserRouter([
       {
         path: "/movieDetails",
         element: <MovieDetails></MovieDetails>,
+      },
+      {
+        path: "/showTime",
+        element: <ShowTime></ShowTime>,
+      },
+      {
+        path: "/ticketPrice",
+        element: <TicketPrice></TicketPrice>,
+      },
+      {
+        path: "/membership",
+        element: <Membership></Membership>,
+      },
+      {
+        path: "/foodCorner",
+        element: <FoodCorner></FoodCorner>,
+      },
+      {
+        path: "/aboutUs",
+        element: <AboutUs></AboutUs>,
       },
     ],
   },

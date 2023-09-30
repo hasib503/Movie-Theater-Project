@@ -31,7 +31,7 @@ const Navbar = () => {
         </Link>
       </li>
       <li>
-        <Link to="/showtime" className="hover:bg-[#071952] hover:text-white">
+        <Link to="/showTime" className="hover:bg-[#071952] hover:text-white">
           ShowTime
         </Link>
       </li>
@@ -44,10 +44,7 @@ const Navbar = () => {
         </Link>
       </li>
       <li>
-        <Link
-          to="/ticket-price"
-          className="hover:bg-[#071952] hover:text-white"
-        >
+        <Link to="/ticketPrice" className="hover:bg-[#071952] hover:text-white">
           Ticket Price
         </Link>
       </li>
@@ -57,12 +54,12 @@ const Navbar = () => {
         </Link>
       </li>
       <li>
-        <Link to="/food-corner" className="hover:bg-[#071952] hover:text-white">
+        <Link to="/foodCorner" className="hover:bg-[#071952] hover:text-white">
           Food Corner
         </Link>
       </li>
       <li>
-        <Link to="/about-us" className="hover:bg-[#071952] hover:text-white">
+        <Link to="/aboutUs" className="hover:bg-[#071952] hover:text-white">
           About Us
         </Link>
       </li>

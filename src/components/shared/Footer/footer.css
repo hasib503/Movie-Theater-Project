@@ -19,9 +19,8 @@ li:hover{
 
 .icon{
   margin-top: 4px;
-  border: 2px solid #78909C;
-  border-radius: 100%;
-  background-color: #78909C;
+  border: 2px solid #d42a2a;
+  background-color: #d42a2a;
   height: 30px;
   width: 30px;
   
@@ -61,24 +60,6 @@ li:hover{
 }
 
 
-.footer-menu::before{
-    content: '';
-    position: absolute;
-    width: 100px;
-    height: 25px;
-    /* background: linear-gradient(#90A4AE, #CFD8DC); */
-    background-color: #263238;
-    animation: rotate 4s linear infinite;
-}
-
-@keyframes rotate {
-  from{
-    transform: rotate(0deg);
-  }
-  to{
-    transform: rotate(360deg);
-  }
-}
 
 
 

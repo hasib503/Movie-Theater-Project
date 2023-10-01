@@ -63,6 +63,24 @@ const Navbar = () => {
           About Us
         </Link>
       </li>
+      <li>
+        <Link
+          to="/dashboard/addMovie"
+          className="hover:bg-[#071952] hover:text-white"
+        >
+          Dashboard
+        </Link>
+      </li>
+      {user && (
+        <li>
+          <Link
+            onClick={handleLogOut}
+            className="hover:bg-[#071952] hover:text-white"
+          >
+            Log Out
+          </Link>
+        </li>
+      )}
     </>
   );
 

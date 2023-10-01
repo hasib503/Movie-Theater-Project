@@ -11,6 +11,8 @@ import TicketPrice from "../pages/ticketPrice/TicketPrice";
 import Membership from "../pages/membership/Membership";
 import FoodCorner from "../pages/foodCorner/FoodCorner";
 import AboutUs from "../pages/aboutUs/AboutUs";
+import Dashboard from "../layouts/Dashboard";
+import AddMovie from "../pages/addMovie/AddMovie";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +65,16 @@ const router = createBrowserRouter([
       {
         path: "/aboutUs",
         element: <AboutUs></AboutUs>,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: "/dashboard/addMovie",
+        element: <AddMovie></AddMovie>,
       },
     ],
   },

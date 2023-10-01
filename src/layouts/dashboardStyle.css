@@ -1,0 +1,6 @@
+.d-default{
+    @apply flex items-center  text-lg font-medium text-white hover:text-[#d42a2a] duration-300 transition-all;
+}
+.d-active{
+    @apply flex items-center  text-lg font-medium text-[#d42a2a];
+}

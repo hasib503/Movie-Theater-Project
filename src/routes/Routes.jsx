@@ -10,7 +10,7 @@ import ShowTime from "../pages/showTime/ShowTime";
 import TicketPrice from "../pages/ticketPrice/TicketPrice";
 import Membership from "../pages/membership/Membership";
 import FoodCorner from "../pages/foodCorner/FoodCorner";
-import AboutUs from "../pages/AboutUs/AboutUs";
+import AboutUs from "../pages/aboutUs/AboutUs";
 
 const router = createBrowserRouter([
   {

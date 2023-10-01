@@ -1,17 +1,28 @@
 import React from "react";
 import DashboardHeading from "../../components/dash-header/DashboardHeading";
-// import { useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
+
+
+const imgbb_hosting_img = import.meta.env.VITE_IMG_HOST;
 
 const AddMovie = () => {
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm();
 
-  // const onSubmit = (data) => {
-  //   console.log(data);
-  // };
+
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+    const formData = new FormData();
+    formData.append("image", data.photo[0]);
+  };
+
+   // IMAGE HOSTING URL
+   const hosted_img_url = `https://api.imgbb.com/1/upload?key=${imgbb_hosting_img}`;
 
   return (
     <div className="">
@@ -29,23 +40,31 @@ const AddMovie = () => {
                   className="glass-bg focus-visible:outline-none p-2"
                   type="text"
                   placeholder="Movie name"
+                  {...register("name", { required: true })}
                 />
+                {errors.name && (
+                <span className="text-red-600">Name is required</span>
+              )}
               </div>
               {/* Poster */}
               <div className="flex flex-col space-y-2 mb-4">
                 <label htmlFor="">Movie Poster</label>
                 <input
                   className="glass-bg focus-visible:outline-none p-2"
-                  type="text"
+                  type="file"
                   placeholder="Movie poster"
+                  {...register("poster", { required: true })}
                 />
+                {errors.name && (
+                <span className="text-red-600">Poster is required</span>
+              )}
               </div>
               {/* Cover */}
               <div className="flex flex-col space-y-2 mb-4">
                 <label htmlFor="">Movie cover</label>
                 <input
                   className="glass-bg focus-visible:outline-none p-2"
-                  type="text"
+                  type="file"
                   placeholder="Movie cover"
                 />
               </div>
@@ -69,11 +88,20 @@ const AddMovie = () => {
               </div>
               {/* IMDB Rating */}
               <div className="flex flex-col space-y-2 mb-4">
-                <label htmlFor="">Movie Category</label>
+                <label htmlFor="">Movie Rating</label>
                 <input
                   className="glass-bg focus-visible:outline-none p-2"
                   type="text"
-                  placeholder="Enter category"
+                  placeholder="Enter rating"
+                />
+              </div>
+              {/* Director */}
+              <div className="flex flex-col space-y-2 mb-4">
+                <label htmlFor="">Movie Director</label>
+                <input
+                  className="glass-bg focus-visible:outline-none p-2"
+                  type="text"
+                  placeholder="Enter director"
                 />
               </div>
             </div>
@@ -124,7 +152,30 @@ const AddMovie = () => {
                   placeholder="Enter link"
                 />
               </div>
+              {/* Writer */}
+              <div className="flex flex-col space-y-2 mb-4">
+                <label htmlFor="">Movie Writer</label>
+                <input
+                  className="glass-bg focus-visible:outline-none p-2"
+                  type="link"
+                  placeholder="Enter writer name"
+                />
+              </div>
+              {/* Casts */}
+              <div className="flex flex-col space-y-2 mb-4">
+                <label htmlFor="">Movie Cast</label>
+                <input
+                  className="glass-bg focus-visible:outline-none p-2"
+                  type="link"
+                  placeholder="Enter cast names"
+                />
+              </div>
             </div>
+          </div>
+          <div>
+            <button type="submit" className="primary-btn-bg  px-5 py-2">
+              Add Movie
+            </button>
           </div>
         </form>
       </div>

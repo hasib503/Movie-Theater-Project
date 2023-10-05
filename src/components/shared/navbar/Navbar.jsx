@@ -132,8 +132,8 @@ const Navbar = () => {
                   </div>
                 </label>
                 <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-[#001232] text-white flex gap-2 w-40 rounded-md">
-                  <Link className="hover:bg-[#071952] p-2"><a>Profile</a></Link>
-                  <Link className="hover:bg-[#071952] p-2"><a>Dashboard</a></Link>
+                  <Link to='userDashboard/profile' className="hover:bg-[#071952] p-2"><a>Profile</a></Link>
+                  <Link to='/userDashboard/profile' className="hover:bg-[#071952] p-2"><a>Dashboard</a></Link>
                   <Link onClick={handleLogOut} className="hover:bg-[#071952] p-2"><a>Logout</a></Link>
                 </ul>
               </div>

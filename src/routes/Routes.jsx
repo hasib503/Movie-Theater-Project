@@ -13,6 +13,11 @@ import FoodCorner from "../pages/foodCorner/FoodCorner";
 import AboutUs from "../pages/aboutUs/AboutUs";
 import Dashboard from "../layouts/Dashboard";
 import AddMovie from "../pages/addMovie/AddMovie";
+import UserDashBoard from "../layouts/UserDashBoard"
+import TicketHistory from "../pages/UserDashboardPages/TicketHistory";
+import Favorite from "../pages/UserDashboardPages/Favorite";
+import Profile from "../pages/UserDashboardPages/Profile";
+import EditProfile from "../pages/UserDashboardPages/EditProfile";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +80,28 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/addMovie",
         element: <AddMovie></AddMovie>,
+      },
+    ],
+  },
+  {
+    path: "/userDashboard",
+    element: <UserDashBoard></UserDashBoard>,
+    children: [
+      {
+        path: "/userDashboard/profile",
+        element: <Profile></Profile>
+      },
+      {
+        path: "/userDashboard/editProfile",
+        element: <EditProfile></EditProfile>
+      },
+      {
+        path: "/userDashboard/ticketHistory",
+        element: <TicketHistory></TicketHistory>
+      },
+      {
+        path: "/userDashboard/favorite",
+        element: <Favorite></Favorite>
       },
     ],
   },

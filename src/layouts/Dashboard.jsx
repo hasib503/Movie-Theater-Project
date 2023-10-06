@@ -50,7 +50,7 @@ const Dashboard = () => {
     <>
       {/* NAVBAR */}
       {/* <Navbar></Navbar> */}
-      <div className="flex lg:flex-row flex-col text-white min-h-screen overflow-hidden">
+      <div className="flex lg:flex-row flex-col text-white min-h-screen overflow-y-hidden">
         <div className="lg:border-r p-2 ">
           {/* Site Logo */}
           <div className="text-center flex flex-col items-center glass-bg p-2 relative">
@@ -71,10 +71,15 @@ const Dashboard = () => {
           </div>
           {/* Mobile Nav Item */}
           <div
-            className={`lg:hidden glass-bg absolute  w-[95%] transition-all duration-300 ${
-              isOpen ? "bottom-[10px]" : "-bottom-[100%]"
+            className={`lg:hidden glass-bg  w-[95%] transition-all duration-300 ${
+              isOpen ? "fixed bottom-2 block z-50" : " hidden"
             }`}
           >
+            <div className=" flex justify-end p-2">
+              <button onClick={() => setIsOpen(!isOpen)} className="border p-2">
+                close
+              </button>
+            </div>
             <ul className=" px-2">{navItem}</ul>
           </div>
         </div>

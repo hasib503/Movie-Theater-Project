@@ -37,6 +37,10 @@ const AddMovie = () => {
   const [selectLanguage, setSelectLanguage] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
   const [castData, setCastData] = useState([]);
+  const [cast, setCast] = useState([]);
+  const [castName, setCastName] = useState("");
+  const [castImage, setCastImage] = useState("");
+  console.log(castImage);
 
   const {
     register,
@@ -73,13 +77,12 @@ const AddMovie = () => {
 
   const handleCastImageUpload = (e) => {
     e.preventDefault();
-    const castName = e.target.value;
-    console.log(castName);
+    console.log("click Cast");
   };
 
-  console.log(castData);
+  // console.log(castData);
   const newDate = formatDate(selectedDate);
-  console.log(newDate);
+  // console.log(newDate);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -88,6 +91,8 @@ const AddMovie = () => {
   // IMAGE HOSTING URL
   const hosted_img_url = `https://api.imgbb.com/1/upload?key=${imgbb_hosting_img}`;
 
+
+// Main submit button handler
   const onSubmit = (data) => {
     console.log(data);
     const formData = new FormData();
@@ -119,6 +124,27 @@ const AddMovie = () => {
         }
       });
   };
+
+  const handleCast = (e) => {
+    e.preventDefault();
+
+    const formData3 = new FormData();
+    formData3.append("image", castImage);
+    fetch(hosted_img_url, {
+      method: "POST",
+      body: formData3,
+    })
+      .then((res) => res.json())
+      .then((imgResponse) => {
+        if (imgResponse.success) {
+          const castImageUrl = imgResponse.data.display_url;
+          const newCast = { name: castName, url: castImageUrl };
+
+          setCast([...cast, newCast]);
+        }
+      });
+  };
+  console.log(cast);
 
   return (
     <div className="">
@@ -324,6 +350,7 @@ const AddMovie = () => {
                 <label htmlFor="">Movie Cast</label>
                 {castData?.map((cast, index) => (
                   <div
+                    onSubmit={handleCastImageUpload}
                     key={index}
                     className="flex flex-row gap-2 duration-300 transition-all"
                   >
@@ -332,14 +359,17 @@ const AddMovie = () => {
                       type="text"
                       placeholder="Cast name"
                       name="castName"
+                      onChange={(e) => setCastName(e.target.value)}
                     />
                     <input
                       className="glass-bg p-1 border focus-visible:outline-none"
                       type="file"
                       placeholder="Cast photo"
+                      onChange={(e) => setCastImage(e.target.files[0])}
                     />
                     <button
-                      onClick={(e) => handleCastImageUpload(e)}
+                      type="submit"
+                      onClick={(e) => handleCast(e)}
                       className="border p-1"
                     >
                       upload

@@ -6,6 +6,7 @@ import Select from "react-select";
 import "./style.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+// import axios from "axios";
 
 const imgbb_hosting_img = import.meta.env.VITE_IMG_HOST;
 
@@ -91,8 +92,7 @@ const AddMovie = () => {
   // IMAGE HOSTING URL
   const hosted_img_url = `https://api.imgbb.com/1/upload?key=${imgbb_hosting_img}`;
 
-
-// Main submit button handler
+  // Main submit button handler
   const onSubmit = (data) => {
     console.log(data);
     const formData = new FormData();
@@ -119,6 +119,40 @@ const AddMovie = () => {
               if (imgResponse.success) {
                 const posterImageUrl = imgResponse.data.display_url;
                 console.log(coverImageUrl, posterImageUrl);
+                const newMovieData = {
+                  cover: coverImageUrl,
+                  poster: posterImageUrl,
+                  name: data.name,
+                  storyline: data.storyline,
+                  genres: selectGenres,
+                  releaseDate: selectedDate,
+                  runtime: data.runtime,
+                  category: selectCategory,
+                  language: selectLanguage,
+                  trailer: data.trailer,
+                  imdb_rating: data.rating,
+                  Director: data.director,
+                  Writer: data.writer,
+                  casts: cast,
+                };
+                console.log(newMovieData);
+                fetch("http://localhost:5000/addMovie", {
+                  method: "POST",
+                  headers: {
+                    "content-type": "application/json",
+                  },
+                  body: JSON.stringify(newMovieData),
+                })
+                  .then((res) => res.json())
+                  .then((data) => {
+                    if (data) {
+                      alert("Movie added successfully");
+                      console.log(data);
+                    }
+                  })
+                  .catch((err) => {
+                    console.log(err.message);
+                  });
               }
             });
         }

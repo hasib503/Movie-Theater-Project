@@ -13,6 +13,7 @@ import FoodCorner from "../pages/foodCorner/FoodCorner";
 import AboutUs from "../pages/aboutUs/AboutUs";
 import Dashboard from "../layouts/Dashboard";
 import AddMovie from "../pages/addMovie/AddMovie";
+import AllMovies from "../pages/allMovies/AllMovies";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/addMovie",
         element: <AddMovie></AddMovie>,
+      },
+      {
+        path: "/dashboard/allMovies",
+        element: <AllMovies></AllMovies>,
       },
     ],
   },

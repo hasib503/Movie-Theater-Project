@@ -15,9 +15,9 @@ const NewsSection = () => {
 
   return (
     <Container>
-      <h1 className="text-2xl lg:text-5xl font-semibold mb-8 mt-16 text-slate-400">
+      <h2 className="text-2xl lg:text-5xl font-semibold mb-8 mt-16 text-slate-400">
         Latest News
-      </h1>
+      </h2>
       <div className="grid lg:grid-cols-10 gap-8 items-center mb-16">
         <div className="lg:col-span-3 text-sm">
           <div>

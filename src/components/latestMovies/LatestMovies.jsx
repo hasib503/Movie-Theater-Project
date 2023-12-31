@@ -2,6 +2,8 @@ import React from "react";
 import Container from "../container/Container";
 import { useQuery } from "react-query";
 import axios from "axios";
+import PrimaryBtn from "../primaryBtn/PrimaryBtn";
+import { Link } from "react-router-dom";
 
 const LatestMovies = () => {
   const { data: latestMoves, isLoading } = useQuery({
@@ -20,15 +22,35 @@ const LatestMovies = () => {
               Latest Movies
             </h2>
           </div>
-          <div className="grid grid-cols-3 gap-10">
+          <div className="grid grid-cols-3 gap-16">
             {isLoading ? (
               <div>
                 <span className="loading loading-spinner loading-lg"></span>
               </div>
             ) : (
               latestMoves?.map((movie, index) => (
-                <div key={index}>
-                  <img width={300} height={300} src={movie.poster} alt="" />
+                <div className="" key={index}>
+                  <div className="">
+                    <div className="md:h-[300px]">
+                      <img
+                        className="h-full w-full"
+                        src={movie.poster}
+                        alt=""
+                      />
+                    </div>
+                    <div className="mt-5 space-y-5">
+                      <h3 className="text-3xl">{movie.name}</h3>
+                      <p className="glass-bg p-3">
+                        Release: {movie.releaseDate}
+                      </p>
+                      <p className="glass-bg p-3">
+                        IMDB Rating: {movie.imdb_rating}
+                      </p>
+                    </div>
+                    <div className="my-8">
+                      <Link to={"/movieDetails"}>See Details</Link>
+                    </div>
+                  </div>
                 </div>
               ))
             )}

@@ -48,7 +48,12 @@ const LatestMovies = () => {
                       </p>
                     </div>
                     <div className="my-8">
-                      <Link to={"/movieDetails"}>See Details</Link>
+                      <Link
+                        className="primary-btn-bg uppercase px-7 rounded py-2 font-medium text-sm duration-500"
+                        to={`/movieDetails/${movie._id}`}
+                      >
+                        See Details
+                      </Link>
                     </div>
                   </div>
                 </div>

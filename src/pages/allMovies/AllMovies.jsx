@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useQuery } from "react-query";
+import DashboardHeading from "../../components/dash-header/DashboardHeading";
 
 const AllMovies = () => {
   // const [movies, setMovies] = useState([]);
@@ -14,13 +15,12 @@ const AllMovies = () => {
 
   console.log(movies);
 
-  // fetch("http://localhost:5000/movieList")
-  //   .then((res) => res.json())
-  //   .then((data) => setMovies(data));
-
   return (
-    <div className="border min-h-full">
-      <div className="overflow-x-auto">
+    <div className=" min-h-full">
+      <div className="mb-5">
+        <DashboardHeading title={"All Movies"}></DashboardHeading>
+      </div>
+      <div className="overflow-x-auto border">
         <table className="table table-xs">
           <thead>
             <tr className="text-white">

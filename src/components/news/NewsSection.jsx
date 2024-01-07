@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Container from "./../container/Container";
 import { Link } from "react-router-dom";
+import SectionHeading from "../sectionHeading/SectionHeading";
 
 const NewsSection = () => {
   const [news, setNews] = useState([]);
@@ -15,9 +16,10 @@ const NewsSection = () => {
 
   return (
     <Container>
-      <h2 className="text-2xl lg:text-5xl font-semibold mb-8 mt-16 text-slate-400">
+      {/* <h2 className="text-2xl lg:text-5xl font-semibold mb-8 mt-16 text-slate-400">
         Latest News
-      </h2>
+      </h2> */}
+      <SectionHeading title={"Latest News"}></SectionHeading>
       <div className="grid lg:grid-cols-10 gap-8 items-center mb-16">
         <div className="lg:col-span-3 text-sm">
           <div>

@@ -6,6 +6,7 @@ import { AiFillHome, AiFillPlusCircle } from "react-icons/ai";
 import { MdVideoLibrary } from "react-icons/md";
 import { HiDotsVertical } from "react-icons/hi";
 import "./dashboardStyle.css";
+import { GiTheater } from "react-icons/gi";
 
 const Dashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,6 +43,17 @@ const Dashboard = () => {
             <MdVideoLibrary size={24}></MdVideoLibrary>
           </span>
           <span>All Movies</span>
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/dashboard/createShowingMovies"
+          className={({ isActive }) => (isActive ? "d-active" : "d-default")}
+        >
+          <span className="mr-6">
+            <GiTheater size={24} />
+          </span>
+          <span>Now Showing</span>
         </NavLink>
       </li>
     </>

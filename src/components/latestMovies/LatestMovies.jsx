@@ -4,6 +4,7 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import PrimaryBtn from "../primaryBtn/PrimaryBtn";
 import { Link } from "react-router-dom";
+import SectionHeading from "../sectionHeading/SectionHeading";
 
 const LatestMovies = () => {
   const { data: latestMoves, isLoading } = useQuery({
@@ -17,11 +18,7 @@ const LatestMovies = () => {
     <div>
       <Container>
         <div>
-          <div>
-            <h2 className="text-2xl lg:text-5xl font-semibold mb-8 mt-16 text-slate-400">
-              Latest Movies
-            </h2>
-          </div>
+          <SectionHeading title={"Latest Movies"}></SectionHeading>
           <div className="grid grid-cols-3 gap-16">
             {isLoading ? (
               <div>

@@ -63,6 +63,7 @@ const MovieDetails = () => {
                         </span>
                       ))}
                     </div>
+                    {/* Movie Trailer Icon Part */}
                     <div className="flex items-center gap-5">
                       <CircleRating
                         rating={movieDetails?.imdb_rating}
@@ -76,6 +77,17 @@ const MovieDetails = () => {
                         <PlayIcon></PlayIcon>
                         <span className="text">Watch Trailer</span>
                       </div>
+                    </div>
+                    {/* Genres Part */}
+                    <div className="my-5">
+                      {movieDetails?.genres?.map((item, index) => (
+                        <span
+                          key={index}
+                          className="bg-[#d42a2a] text-white px-2 py-1 rounded-sm space-x-5"
+                        >
+                          {item.label}
+                        </span>
+                      ))}
                     </div>
                     <div className="Other_info">
                       <table className="table">

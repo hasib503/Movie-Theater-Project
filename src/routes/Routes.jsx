@@ -14,6 +14,7 @@ import AboutUs from "../pages/aboutUs/AboutUs";
 import Dashboard from "../layouts/Dashboard";
 import AddMovie from "../pages/addMovie/AddMovie";
 import AllMovies from "../pages/allMovies/AllMovies";
+import CreateShowingMovies from "../pages/createShowing/CreateShowingMovies";
 
 const router = createBrowserRouter([
   {
@@ -80,6 +81,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/allMovies",
         element: <AllMovies></AllMovies>,
+      },
+      {
+        path: "/dashboard/createShowingMovies",
+        element: <CreateShowingMovies></CreateShowingMovies>,
       },
     ],
   },

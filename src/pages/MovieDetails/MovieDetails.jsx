@@ -24,7 +24,7 @@ const MovieDetails = () => {
       .then((res) => res.json())
       .then((data) => setMovieDetails(data));
   }, [id]);
-  console.log(movieDetails);
+  // movieDetails?.language?.map((item) => console.log(item));
 
   return (
     <div className="">
@@ -78,42 +78,42 @@ const MovieDetails = () => {
                       </div>
                     </div>
                     <div className="Other_info">
-                      {/* <table className="table">
-                      <tbody>
-                        <tr className="border-b border-[#2f3f79] md:text-lg">
-                          <td className="w-[30%] pl-0 ">Language :</td>
-                          <td className="font-light">
-                            {movieDetails?.language}
-                          </td>
-                        </tr>
-                        <tr className="border-b border-[#2f3f79] md:text-lg">
-                          <td className="w-[30%] pl-0">Release :</td>
-                          <td className="font-light">
-                            {movieDetails.releaseDate}
-                          </td>
-                        </tr>
-                        <tr className="border-b border-[#2f3f79] md:text-lg">
-                          <td className="w-[30%] pl-0">Run Time :</td>
-                          <td className="font-light">{movieDetails.runtime}</td>
-                        </tr>
-                        <tr className="border-b border-[#2f3f79] md:text-lg">
-                          <td className="w-[30%] pl-0">Director :</td>
-                          <td className="font-light">
-                            {movieDetails.director}
-                          </td>
-                        </tr>
-                        <tr className="border-b border-[#2f3f79] md:text-lg">
-                          <td className="w-[30%] pl-0">Writer :</td>
-                          <td className="font-light space-x-3">
-                            {movieDetails?.writer?.map((item, index) => (
-                              <span className="" key={index}>
-                                {item}
-                              </span>
-                            ))}
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table> */}
+                      <table className="table">
+                        <tbody>
+                          <tr className="border-b border-[#2f3f79] md:text-lg">
+                            <td className="w-[30%] pl-0 ">Language :</td>
+                            <td className="font-light">
+                              {movieDetails?.language?.map(
+                                (item) => item.label
+                              )}
+                            </td>
+                          </tr>
+                          <tr className="border-b border-[#2f3f79] md:text-lg">
+                            <td className="w-[30%] pl-0">Release :</td>
+                            <td className="font-light">
+                              {movieDetails.releaseDate}
+                            </td>
+                          </tr>
+                          <tr className="border-b border-[#2f3f79] md:text-lg">
+                            <td className="w-[30%] pl-0">Run Time :</td>
+                            <td className="font-light">
+                              {movieDetails.runtime}
+                            </td>
+                          </tr>
+                          <tr className="border-b border-[#2f3f79] md:text-lg">
+                            <td className="w-[30%] pl-0">Director :</td>
+                            <td className="font-light">
+                              {movieDetails?.Director}
+                            </td>
+                          </tr>
+                          <tr className="border-b border-[#2f3f79] md:text-lg">
+                            <td className="w-[30%] pl-0">Writer :</td>
+                            <td className="font-light space-x-3">
+                              {movieDetails?.Writer}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
                   </div>
                 </div>
@@ -123,10 +123,12 @@ const MovieDetails = () => {
         </div>
       </div>
       {/* Movie Story Line */}
-      <div className="story_line ">
+      <div className="story_line  my-10">
         <Container>
           <div className="space-y-3">
-            <h6 className="text-2xl font-light">Story Line</h6>
+            <h6 className="text-2xl font-light border-b border-[#2f3f79] pb-2">
+              Story Line
+            </h6>
             <p>{movieDetails.storyline}</p>
           </div>
         </Container>
@@ -134,17 +136,24 @@ const MovieDetails = () => {
       {/* Cast section */}
       <Container>
         <div className="mb-3 ">
-          <h6 className="text-2xl font-light">All Casts</h6>
+          <h6 className="text-2xl font-light border-b border-[#2f3f79] pb-2">
+            All Casts
+          </h6>
         </div>
-        <div className=" md:flex space-x-5 pb-10 justify-between space-y-5 lg:space-y-0">
+        <div className=" md:flex space-x-5 pb-10 justify-start  space-y-5 lg:space-y-0 ">
           {movieDetails?.casts?.map((cast, index) => (
-            <div className=" flex-col justify-center items-center" key={index}>
+            <div
+              className=" flex-col justify-center items-center md:me-5"
+              key={index}
+            >
               <img
                 className=" w-[110px] h-[110px] lg:w-[150px] lg:h-[150px] rounded-full"
-                src={cast?.cast_image}
+                src={cast?.url}
                 alt=""
               />
-              <p className="text-lg mt-3 font-medium">{cast.cast_name}</p>
+              <p className="text-lg mt-3 font-medium text-center">
+                {cast.name}
+              </p>
             </div>
           ))}
         </div>

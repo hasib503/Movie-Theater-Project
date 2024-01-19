@@ -5,7 +5,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const CreateShowingMovies = () => {
-  const { data: movies, isLoading } = useQuery({
+  const { data: movies } = useQuery({
     queryKey: ["allMovies"],
     queryFn: async () => {
       const res = await axios.get("http://localhost:5000/movieList");
@@ -38,7 +38,10 @@ const CreateShowingMovies = () => {
                   </td>
                   <td>{movie.name}</td>
                   <td className=" text-center">
-                    <Link className="bg-blue-700 hover:py-2 transition-all duration-100 text-white px-2 py-1 rounded-sm">
+                    <Link
+                      to={`/dashboard/addShowTime/${movie._id}`}
+                      className="bg-blue-700 hover:py-2 transition-all duration-100 text-white px-2 py-1 rounded-sm"
+                    >
                       Now Showing
                     </Link>
                   </td>

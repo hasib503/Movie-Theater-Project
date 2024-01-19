@@ -94,10 +94,10 @@ const AddMovie = () => {
 
   // Main submit button handler
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     const formData = new FormData();
     formData.append("image", data.cover[0]);
-    console.log(formData);
+    // console.log(formData);
 
     fetch(hosted_img_url, {
       method: "POST",

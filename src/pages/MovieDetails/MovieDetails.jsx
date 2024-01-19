@@ -12,13 +12,7 @@ const MovieDetails = () => {
   const [show, setShow] = useState(false);
   const { id } = useParams();
   const [movieDetails, setMovieDetails] = useState({});
-  // const { data: movieDetails, isLoading } = useQuery({
-  //   queryKey: ["movieDetails"],
-  //   queryFn: async () => {
-  //     const res = await axios.get(`http://localhost:5000/movieDetails/${id}`);
-  //     return res.data;
-  //   },
-  // });
+
   useEffect(() => {
     fetch(`http://localhost:5000/movieDetails/${id}`)
       .then((res) => res.json())

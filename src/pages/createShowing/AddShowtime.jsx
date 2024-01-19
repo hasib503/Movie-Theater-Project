@@ -22,7 +22,6 @@ const AddShowtime = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     const showingMovie = {
       name: showtimeMovie?.name,
       showingStatus: data?.status,
@@ -30,7 +29,26 @@ const AddShowtime = () => {
       showTime: [data?.morning, data?.afternoon, data?.evening],
       movieId: showtimeMovie._id,
     };
-    console.log(showingMovie);
+    fetch("http://localhost:5000/addShowtimeMovie", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(showingMovie),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          alert("Movie added successfully");
+          console.log(data);
+        } else {
+          alert("The movie already added!");
+        }
+      })
+      .catch((err) => {
+        console.log(err.message);
+        alert(err.message);
+      });
   };
 
   return (

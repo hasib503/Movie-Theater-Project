@@ -24,6 +24,7 @@ const AddShowtime = () => {
   const onSubmit = (data) => {
     const showingMovie = {
       name: showtimeMovie?.name,
+      poster: showtimeMovie?.poster,
       showingStatus: data?.status,
       availableSeats: data?.seats,
       showTime: [data?.morning, data?.afternoon, data?.evening],

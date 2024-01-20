@@ -16,6 +16,8 @@ import AddMovie from "../pages/addMovie/AddMovie";
 import AllMovies from "../pages/allMovies/AllMovies";
 import CreateShowingMovies from "../pages/createShowing/CreateShowingMovies";
 import AddShowtime from "../pages/createShowing/AddShowtime";
+import BookingMovie from "../components/bookingMovie/bookingMovie";
+import SeatChoice from "../components/seatsChoice/SeatChoice";
 
 const router = createBrowserRouter([
   {
@@ -90,6 +92,16 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/addShowTime/:id",
         element: <AddShowtime></AddShowtime>,
+      },
+    ],
+  },
+  {
+    path: "/bookingMovie",
+    element: <BookingMovie></BookingMovie>,
+    children: [
+      {
+        path: "",
+        element: <SeatChoice></SeatChoice>,
       },
     ],
   },

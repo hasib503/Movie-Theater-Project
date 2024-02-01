@@ -38,12 +38,18 @@ const CreateShowingMovies = () => {
                   </td>
                   <td>{movie.name}</td>
                   <td className=" text-center">
-                    <Link
-                      to={`/dashboard/addShowTime/${movie._id}`}
-                      className="bg-blue-700 hover:py-2 transition-all duration-100 text-white px-2 py-1 rounded-sm"
-                    >
-                      Now Showing
-                    </Link>
+                    {movie?.status ? (
+                      <button className="bg-gray-200  text-black px-2 py-1 rounded-sm">
+                        Showing
+                      </button>
+                    ) : (
+                      <Link
+                        to={`/dashboard/addShowTime/${movie._id}`}
+                        className="bg-blue-700 hover:py-2 transition-all duration-100 text-white px-2 py-1 rounded-sm"
+                      >
+                        Make Showing
+                      </Link>
+                    )}
                   </td>
                 </tr>
               ))}

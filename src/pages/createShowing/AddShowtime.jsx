@@ -39,7 +39,8 @@ const AddShowtime = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.insertedId) {
+        console.log(data.result);
+        if (data.result.insertedId) {
           alert("Movie added successfully");
           console.log(data);
         } else {

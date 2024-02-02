@@ -43,7 +43,7 @@ const NowShowingMovies = () => {
                     <div className="my-8">
                       <Link
                         className="primary-btn-bg uppercase px-7 rounded py-2 font-medium text-sm duration-500"
-                        to={`/bookingMovie`}
+                        to={`/bookingMovie/${movie._id}`}
                       >
                         Get Ticket
                       </Link>

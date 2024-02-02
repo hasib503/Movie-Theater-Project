@@ -100,7 +100,7 @@ const router = createBrowserRouter([
     element: <BookingMovie></BookingMovie>,
     children: [
       {
-        path: "",
+        path: "/bookingMovie/:id",
         element: <SeatChoice></SeatChoice>,
       },
     ],

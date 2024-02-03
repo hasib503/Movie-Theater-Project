@@ -22,11 +22,12 @@ const AddShowtime = () => {
   } = useForm();
 
   const onSubmit = (data) => {
+    const seats = Array(parseInt(data.seats)).fill(true);
     const showingMovie = {
       name: showtimeMovie?.name,
       poster: showtimeMovie?.poster,
       showingStatus: data?.status,
-      availableSeats: data?.seats,
+      availableSeats: seats,
       showTime: [data?.morning, data?.afternoon, data?.evening],
       movieId: showtimeMovie._id,
     };

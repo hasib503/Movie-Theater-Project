@@ -8,7 +8,7 @@ const BookingMovie = () => {
   return (
     <>
       <Navbar></Navbar>
-      <div>
+      <div className="min-h-screen ">
         <Container>
           <Outlet></Outlet>
         </Container>

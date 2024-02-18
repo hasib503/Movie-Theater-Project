@@ -3,12 +3,15 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { TbArmchair } from "react-icons/tb";
 import "./seats.css";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const SeatChoice = () => {
   const { id } = useParams();
+  const { user } = useContext(AuthContext);
+  // console.log(user);
   const [value, onChange] = useState(new Date());
   const { data: selectedMovie } = useQuery({
     queryKey: ["showtimeMovie"],
@@ -18,9 +21,21 @@ const SeatChoice = () => {
     },
   });
 
+  // Handle seat booking button here:
+  const handlebooking = () => {
+    const bookingInfo = {
+      userName: user?.displayName,
+      userEmail: user?.email,
+      selectedMovie: selectedMovie?.name,
+      moviePoster: selectedMovie?.poster,
+      date: value,
+    };
+    console.log(bookingInfo);
+  };
+
   return (
     <div>
-      <div className="h-[550px] flex items-center">
+      <div className=" flex items-center">
         <div className="grid gird-cols-1 md:grid-cols-1 lg:grid-cols-3 w-full h-full mt-10 lg:mt-0 ">
           <div className="col-span-3 lg:col-span-1">
             <div className="  h-full flex items-center justify-center">
@@ -32,7 +47,7 @@ const SeatChoice = () => {
             </div>
           </div>
 
-          <div className=" col-span-3 lg:col-span-2 text-white space-y-4 lg:pl-10 mt-10 md:mt-0 flex items-center ">
+          <div className=" col-span-3 lg:col-span-2 text-white space-y-4 lg:pl-10 mt-10 md:mt-0 flex items-center">
             <div className="w-full">
               <h2 className="text-4xl bg-gradient-to-r from-[#d42a2a] to-[#ffffff08] font-light inline-block px-3 py-0.5">
                 {selectedMovie?.name}
@@ -70,13 +85,19 @@ const SeatChoice = () => {
                 </div>
                 <div className=" w-full flex flex-wrap ">
                   {selectedMovie?.availableSeats?.map((item, index) => (
-                    <span className="m-1 " key={index}>
+                    <div className="m-2 inline text-center" key={index}>
                       {item ? (
-                        <TbArmchair className="cursor-pointer" />
+                        <p className="flex flex-col items-center">
+                          <TbArmchair className="cursor-pointer" />
+                          <span>C-{index + 1}</span>
+                        </p>
                       ) : (
-                        <TbArmchair className="text-red-500" />
+                        <p className="flex flex-col items-center">
+                          <TbArmchair className="cursor-pointer text-red-600" />
+                          <span>C-{index + 1}</span>
+                        </p>
                       )}
-                    </span>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -84,7 +105,10 @@ const SeatChoice = () => {
               {/* Confirm booking area */}
               <div className="">
                 <div>
-                  <button className="primary-btn-bg p-2 rounded-sm">
+                  <button
+                    onClick={handlebooking()}
+                    className="primary-btn-bg p-2 rounded-sm"
+                  >
                     Get booking
                   </button>
                 </div>

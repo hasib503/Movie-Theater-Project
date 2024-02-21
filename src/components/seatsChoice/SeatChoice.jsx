@@ -30,7 +30,12 @@ const SeatChoice = () => {
       moviePoster: selectedMovie?.poster,
       date: value,
     };
-    console.log(bookingInfo);
+    // console.log(bookingInfo);
+  };
+
+  // Handle Seat selection button here:
+  const handleSeatBook = (index) => {
+    console.log(index);
   };
 
   return (
@@ -87,13 +92,16 @@ const SeatChoice = () => {
                   {selectedMovie?.availableSeats?.map((item, index) => (
                     <div className="m-2 inline text-center" key={index}>
                       {item ? (
-                        <p className="flex flex-col items-center">
-                          <TbArmchair className="cursor-pointer" />
+                        <p
+                          onClick={() => handleSeatBook(index + 1)}
+                          className="flex flex-col items-center cursor-pointer"
+                        >
+                          <TbArmchair className="" />
                           <span>C-{index + 1}</span>
                         </p>
                       ) : (
-                        <p className="flex flex-col items-center">
-                          <TbArmchair className="cursor-pointer text-red-600" />
+                        <p className="flex flex-col items-center cursor-pointer">
+                          <TbArmchair className=" text-red-600" />
                           <span>C-{index + 1}</span>
                         </p>
                       )}

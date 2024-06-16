@@ -16,7 +16,7 @@ import AddMovie from "../pages/addMovie/AddMovie";
 import AllMovies from "../pages/allMovies/AllMovies";
 import CreateShowingMovies from "../pages/createShowing/CreateShowingMovies";
 import AddShowtime from "../pages/createShowing/AddShowtime";
-import BookingMovie from "../components/bookingMovie/bookingMovie";
+import BookingMovie from "../components/bookingMovie/BookingMovie";
 import SeatChoice from "../components/seatsChoice/SeatChoice";
 
 const router = createBrowserRouter([

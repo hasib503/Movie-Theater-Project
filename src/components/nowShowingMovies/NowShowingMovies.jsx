@@ -24,7 +24,9 @@ const NowShowingMovies = () => {
           <div className="grid grid-cols-3 gap-16">
             {isLoading ? (
               <div>
-                <span className="loading loading-spinner loading-lg"></span>
+                <span className="loading loading-spinner loading-lg animate-pulse">
+                  Loading...
+                </span>
               </div>
             ) : (
               nowShowingMovies?.map((movie, index) => (

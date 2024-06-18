@@ -2,9 +2,8 @@ import React from "react";
 import Container from "../container/Container";
 import { useQuery } from "react-query";
 import axios from "axios";
-import PrimaryBtn from "../primaryBtn/PrimaryBtn";
-import { Link } from "react-router-dom";
 import SectionHeading from "../sectionHeading/SectionHeading";
+import Button from "../Common/Button";
 
 const LatestMovies = () => {
   const { data: latestMoves, isLoading } = useQuery({
@@ -45,12 +44,19 @@ const LatestMovies = () => {
                       </p>
                     </div>
                     <div className="my-8">
-                      <Link
+                      <Button
+                        title="See Details"
+                        clickable={false}
+                        path={`/movieDetails/${movie._id}`}
+                        variant="primary"
+                        size="medium"
+                      />
+                      {/* <Link
                         className="primary-btn-bg uppercase px-7 rounded py-2 font-medium text-sm duration-500"
                         to={`/movieDetails/${movie._id}`}
                       >
                         See Details
-                      </Link>
+                      </Link> */}
                     </div>
                   </div>
                 </div>

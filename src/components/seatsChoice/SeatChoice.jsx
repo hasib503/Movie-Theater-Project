@@ -1,18 +1,25 @@
 import axios from "axios";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { useContext, useState } from "react";
 import { TbArmchair } from "react-icons/tb";
 import "./seats.css";
 import { AuthContext } from "../../provider/AuthProvider";
+import toast from "react-hot-toast";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const SeatChoice = () => {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
-  // console.log(user);
+  const navigate = useNavigate();
+  const [axiosSecure] = useAxiosSecure()
+  const [selectedSeats, setSelectedSeats] = useState([]);
+  const [selectedShowtime, setSelectedShowtime] = useState("");
+
   const [value, onChange] = useState(new Date());
+
   const { data: selectedMovie } = useQuery({
     queryKey: ["showtimeMovie"],
     queryFn: async () => {
@@ -21,107 +28,141 @@ const SeatChoice = () => {
     },
   });
 
+  const handleShowtime = (e) => {
+    setSelectedShowtime(e.target.value);
+  };
+
+  // Handle Seat selection button here:
+  const handleSeatBook = (index) => {
+    if (!user) {
+      toast.error("Login required!");
+      return navigate("/login");
+    }
+    const alreadySelected = selectedSeats.includes(index);
+    if (alreadySelected) {
+      return toast.error("Already selected!");
+    } else {
+      setSelectedSeats((prev) => [...prev, index]);
+    }
+  };
+
   // Handle seat booking button here:
-  const handlebooking = () => {
+  const handleBooking = () => {
+    selectedSeats?.length <= 0 ? toast.error("Select a seat first.") : null;
     const bookingInfo = {
       userName: user?.displayName,
       userEmail: user?.email,
       selectedMovie: selectedMovie?.name,
       moviePoster: selectedMovie?.poster,
       date: value,
+      showtime: selectedShowtime,
+      selectedSeats: selectedSeats,
     };
+
     console.log(bookingInfo);
+
   };
 
-  // Handle Seat selection button here:
-  const handleSeatBook = (index) => {
-    console.log(index);
-  };
+
 
   return (
-    <>
-      <div className="">
-        <div className=" lg:h-[500px]">
-          <img
-            className="h-full w-full object-cover"
-            src={selectedMovie?.poster}
-            alt="Main Poster"
-          />
-        </div>
+    <div className="flex flex-col gap-10">
+      <div className=" lg:h-[500px]">
+        <img
+          className="h-full w-full object-cover"
+          src={selectedMovie?.poster}
+          alt="Main Poster"
+        />
+      </div>
 
-        <div className=" ">
-          <div className="w-full">
-            <h2 className="text-4xl bg-gradient-to-r from-[#d42a2a] to-[#ffffff08] font-light inline-block px-3 py-0.5">
-              {selectedMovie?.name}
-            </h2>
+      <div className="flex flex-col gap-10">
+        <h2 className="text-4xl bg-gradient-to-r from-[#d42a2a] to-[#rgb(0 18 50)] font-light inline-block px-3 py-0.5">
+          {selectedMovie?.name}
+        </h2>
 
+        <div className="grid grid-cols-3 md:gap-8 lg:gap-10">
+          <div className="col-span-3 md:col-span-1 flex flex-col gap-5">
             {/* Date Option */}
-            <div className="mt-10 mb-5 ">
+            <div>
               <Calendar
-                className={`text-white`}
+                className="hover:text-black text-white"
                 onChange={onChange}
                 value={value}
               />
             </div>
 
             {/* Showtime */}
-            <div className="mb-5">
-              <div className="flex items-center space-x-10">
-                <h4 className="text-xl">Showtime : </h4>
-                <div className="mt-1 leading-normal">
-                  <select className="bg-blue-900" name="" id="">
-                    {selectedMovie?.showTime?.map((item, index) => (
-                      <option className="" key={index}>
-                        {item}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            {/* Available Seats system here */}
-            <div className="flex space-x-5 mb-10">
-              <div>
-                <h4 className="text-xl">Available Seats : </h4>
-              </div>
-              <div className=" w-full flex flex-wrap ">
-                {selectedMovie?.availableSeats?.map((item, index) => (
-                  <div className="m-2 inline text-center" key={index}>
-                    {item ? (
-                      <p
-                        onClick={() => handleSeatBook(index + 1)}
-                        className="flex flex-col items-center cursor-pointer"
-                      >
-                        <TbArmchair className="" />
-                        <span>C-{index + 1}</span>
-                      </p>
-                    ) : (
-                      <p className="flex flex-col items-center cursor-pointer">
-                        <TbArmchair className=" text-red-600" />
-                        <span>C-{index + 1}</span>
-                      </p>
-                    )}
-                  </div>
+            <div className="flex gap-5">
+              <h4 className="text-xl">Showtime : </h4>
+              <select
+                className="bg-transparent border rounded-md p-1 text-white"
+                value={selectedShowtime}
+                onChange={handleShowtime}
+              >
+                {selectedMovie?.showTime?.map((item, index) => (
+                  <option
+                    className="bg-transparent cursor-pointer text-black"
+                    key={index}
+                    value={item}
+                  >
+                    {item}
+                  </option>
                 ))}
-              </div>
+              </select>
             </div>
+          </div>
 
-            {/* Confirm booking area */}
-            <div className="">
-              <div>
-                <button
-                  onClick={handlebooking()}
-                  className="primary-btn-bg p-2 rounded-sm"
-                >
-                  Get booking
-                </button>
-              </div>
+          <div className="col-span-3 md:col-span-2 flex flex-col gap-5">
+            {/* Available Seats system here */}
+            <div className="flex gap-5 items-center">
+              <h4 className="text-xl">Available Seats : </h4>
+              <p className="flex flex-col items-center">
+                <TbArmchair className=" text-red-600" />
+                <span className=" text-red-600">Booked</span>
+              </p>
+              <p className="flex flex-col items-center">
+                <TbArmchair />
+                <span>Available</span>
+              </p>
             </div>
+            <div className="flex flex-wrap gap-2 justify-between">
+              {selectedMovie?.availableSeats?.map((item, index) => (
+                <div
+                  key={index}
+                  className={`p-2 cursor-pointer hover:bg-blue-900 ${
+                    selectedSeats?.includes(index + 1)
+                      ? "bg-blue-900 bg-opacity-100"
+                      : "bg-blue-950"
+                  }  bg-opacity-30 rounded-md`}
+                >
+                  {item ? (
+                    <div
+                      onClick={() => handleSeatBook(index + 1)}
+                      className="flex flex-col items-center w-10"
+                    >
+                      <TbArmchair />
+                      <span>C-{index + 1}</span>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col items-center cursor-not-allowed w-10">
+                      <TbArmchair className=" text-red-600" />
+                      <span className="text-red-600">C-{index + 1}</span>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+            {/* Confirm booking area */}
+            <button
+              onClick={() => handleBooking()}
+              className="primary-btn-bg p-2 rounded-sm"
+            >
+              Get booking
+            </button>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

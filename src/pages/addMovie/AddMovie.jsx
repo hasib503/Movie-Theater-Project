@@ -6,6 +6,7 @@ import Select from "react-select";
 import "./style.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import toast from "react-hot-toast";
 // import axios from "axios";
 
 const imgbb_hosting_img = import.meta.env.VITE_IMG_HOST;
@@ -41,7 +42,6 @@ const AddMovie = () => {
   const [cast, setCast] = useState([]);
   const [castName, setCastName] = useState("");
   const [castImage, setCastImage] = useState("");
-  console.log(castImage);
 
   const {
     register,
@@ -69,8 +69,6 @@ const AddMovie = () => {
 
   // Handle Cast Data
   const handleAddCast = (e) => {
-    console.log("Hello world!");
-    // e.stopPropagation();
     e.preventDefault();
     const newCast = [...castData, []];
     setCastData(newCast);
@@ -78,12 +76,9 @@ const AddMovie = () => {
 
   const handleCastImageUpload = (e) => {
     e.preventDefault();
-    console.log("click Cast");
   };
 
-  // console.log(castData);
   const newDate = formatDate(selectedDate);
-  // console.log(newDate);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -94,10 +89,8 @@ const AddMovie = () => {
 
   // Main submit button handler
   const onSubmit = (data) => {
-    // console.log(data);
     const formData = new FormData();
     formData.append("image", data.cover[0]);
-    // console.log(formData);
 
     fetch(hosted_img_url, {
       method: "POST",
@@ -118,7 +111,6 @@ const AddMovie = () => {
             .then((imgResponse) => {
               if (imgResponse.success) {
                 const posterImageUrl = imgResponse.data.display_url;
-                console.log(coverImageUrl, posterImageUrl);
                 const newMovieData = {
                   cover: coverImageUrl,
                   poster: posterImageUrl,
@@ -135,7 +127,6 @@ const AddMovie = () => {
                   Writer: data.writer,
                   casts: cast,
                 };
-                console.log(newMovieData);
                 fetch("http://localhost:5000/addMovie", {
                   method: "POST",
                   headers: {
@@ -146,7 +137,7 @@ const AddMovie = () => {
                   .then((res) => res.json())
                   .then((data) => {
                     if (data) {
-                      alert("Movie added successfully");
+                      toast.success("Movie added successfully");
                       console.log(data);
                     }
                   })
@@ -178,7 +169,6 @@ const AddMovie = () => {
         }
       });
   };
-  console.log(cast);
 
   return (
     <div className="">

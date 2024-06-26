@@ -1,19 +1,26 @@
 import React from "react";
-import Container from "../../components/container/Container";
-import { Helmet } from 'react-helmet-async';
-import NowPlayingMovies from "../NowPlayingMovies/NowPlayingMovies";
-import TopFeaturedMovie from "../TopFeaturedMovie/TopFeaturedMovie";
+import { Helmet } from "react-helmet-async";
+import HomeBanner from "../../components/homeBanner/HomeBanner";
+import NewsSection from "../../components/news/NewsSection";
+import LatestMovies from "../../components/latestMovies/LatestMovies";
+import NowShowingMovies from "../../components/nowShowingMovies/NowShowingMovies";
 
 const Home = () => {
   return (
     <>
-      <Container>
-        <Helmet>
-          <title>Movie-Theater | Home</title>
-        </Helmet>
-        <NowPlayingMovies></NowPlayingMovies>
-        <TopFeaturedMovie></TopFeaturedMovie>
-      </Container>
+      {/* Helmet package */}
+      <Helmet>
+        <title>Movie-Theater | Home</title>
+      </Helmet>
+
+      {/* Banner Section */}
+      <HomeBanner></HomeBanner>
+      {/* Latest Movies List */}
+      <LatestMovies></LatestMovies>
+      {/* Now Showing Movies */}
+      <NowShowingMovies></NowShowingMovies>
+      {/* News Section */}
+      <NewsSection></NewsSection>
     </>
   );
 };

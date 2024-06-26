@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import Container from "../../container/Container";
 import { Link } from "react-router-dom";
 import mainLogo from "../../../assets/main-logo.png";
-import { FaUser } from "react-icons/fa";
 import { AuthContext } from "../../../provider/AuthProvider";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
+import Button from "../../Common/Button";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -13,12 +13,12 @@ const Navbar = () => {
     logOut()
       .then(() => {
         Swal.fire({
-          position: 'center-center',
-          icon: 'success',
-          title: 'Logout Successfully',
+          position: "center-center",
+          icon: "success",
+          title: "Logout Successfully",
           showConfirmButton: false,
-          timer: 1500
-        })
+          timer: 1500,
+        });
       })
       .catch((error) => console.log(error));
   };
@@ -114,7 +114,13 @@ const Navbar = () => {
               </ul>
             </div>
             {/* navbar logo */}
-            <img className="w-[35px] md:w-[50px] py-3" src={mainLogo} alt="" />
+            <Link to="/">
+              <img
+                className="w-[35px] md:w-[50px] py-3"
+                src={mainLogo}
+                alt=""
+              />
+            </Link>
           </div>
           <div className="navbar-center hidden xl:flex">
             <ul className="menu menu-horizontal mt-0">{navBarItems}</ul>
@@ -126,25 +132,37 @@ const Navbar = () => {
               <div className="dropdown dropdown-end">
                 <label tabIndex={0}>
                   <div className="avatar">
-                    <div className="w-10 mx-4 rounded-full ring ring-[#26577C] ring-offset-base-100 ring-offset-2">
+                    <div className="w-10 mx-4 rounded-full ring ring-[#26577C] ring-offset-base-100 ring-offset-2 cursor-pointer">
                       <img src={user.photoURL} />
                     </div>
                   </div>
                 </label>
-                <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-[#001232] text-white flex gap-2 w-40 rounded-md">
-                  <Link to='userDashboard/profile' className="hover:bg-[#071952] p-2"><a>Profile</a></Link>
-                  <Link to='/userDashboard/profile' className="hover:bg-[#071952] p-2"><a>Dashboard</a></Link>
-                  <Link onClick={handleLogOut} className="hover:bg-[#071952] p-2"><a>Logout</a></Link>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content z-[1] menu p-2 shadow bg-[#001232] text-white flex gap-2 w-40 rounded-md"
+                >
+                  <Link className="hover:bg-[#071952] p-2">
+                    <a>Profile</a>
+                  </Link>
+                  <Link className="hover:bg-[#071952] p-2">
+                    <a>Dashboard</a>
+                  </Link>
+                  <Link
+                    onClick={handleLogOut}
+                    className="hover:bg-[#071952] p-2"
+                  >
+                    <a>Logout</a>
+                  </Link>
                 </ul>
               </div>
             ) : (
-              <Link
-                to="/login"
-                className="hover:bg-[#071952] hover:text-white lg:ml-6 ml-2"
-                title="login"
-              >
-                <FaUser size={28}></FaUser>
-              </Link>
+              <Button
+                title="Login"
+                path="/login"
+                clickable={false}
+                variant="secondary"
+                size="medium"
+              />
             )}
           </div>
         </div>

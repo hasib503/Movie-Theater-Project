@@ -18,6 +18,11 @@ import TicketHistory from "../pages/UserDashboardPages/TicketHistory";
 import Favorite from "../pages/UserDashboardPages/Favorite";
 import Profile from "../pages/UserDashboardPages/Profile";
 import EditProfile from "../pages/UserDashboardPages/EditProfile";
+import AllMovies from "../pages/allMovies/AllMovies";
+import CreateShowingMovies from "../pages/createShowing/CreateShowingMovies";
+import AddShowtime from "../pages/createShowing/AddShowtime";
+import BookingMovie from "../components/bookingMovie/BookingMovie";
+import SeatChoice from "../components/seatsChoice/SeatChoice";
 
 const router = createBrowserRouter([
   {
@@ -48,7 +53,7 @@ const router = createBrowserRouter([
         element: <SignUp></SignUp>,
       },
       {
-        path: "/movieDetails",
+        path: "/movieDetails/:id",
         element: <MovieDetails></MovieDetails>,
       },
       {
@@ -81,27 +86,27 @@ const router = createBrowserRouter([
         path: "/dashboard/addMovie",
         element: <AddMovie></AddMovie>,
       },
+      {
+        path: "/dashboard/allMovies",
+        element: <AllMovies></AllMovies>,
+      },
+      {
+        path: "/dashboard/createShowingMovies",
+        element: <CreateShowingMovies></CreateShowingMovies>,
+      },
+      {
+        path: "/dashboard/addShowTime/:id",
+        element: <AddShowtime></AddShowtime>,
+      },
     ],
   },
   {
-    path: "/userDashboard",
-    element: <UserDashBoard></UserDashBoard>,
+    path: "/bookingMovie",
+    element: <BookingMovie></BookingMovie>,
     children: [
       {
-        path: "/userDashboard/profile",
-        element: <Profile></Profile>
-      },
-      {
-        path: "/userDashboard/editProfile",
-        element: <EditProfile></EditProfile>
-      },
-      {
-        path: "/userDashboard/ticketHistory",
-        element: <TicketHistory></TicketHistory>
-      },
-      {
-        path: "/userDashboard/favorite",
-        element: <Favorite></Favorite>
+        path: "/bookingMovie/:id",
+        element: <SeatChoice></SeatChoice>,
       },
     ],
   },

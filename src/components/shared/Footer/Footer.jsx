@@ -7,14 +7,15 @@ import { AiOutlineTwitter } from "react-icons/ai";
 import { BiLogoFacebookCircle } from "react-icons/bi";
 import { FaInstagramSquare } from "react-icons/fa";
 import { BsFillArrowUpRightCircleFill } from "react-icons/bs";
+import Container from "../../container/Container";
 
 const Footer = () => {
   return (
     <footer>
-      <div className="bg-zinc-950 p-10">
-        <div className="max-w-6xl mx-auto ">
-          <div className="p-2  md:p-10 flex flex-row justify-between items-center">
-            <div className="flex flex-row items-center gap-4">
+      <Container>
+        <div className="">
+          <div className="py-2  md:py-10 flex flex-row justify-between items-center ">
+            <div className="flex flex-row items-center gap-4 ">
               <img
                 className=""
                 src={mainLogo}
@@ -27,11 +28,8 @@ const Footer = () => {
               </p>
             </div>
             <div>
-              <div className="text-white md:flex flex-row justify-center items-center gap-8">
-                <div>
-                  <p className="text-slate-600 hidden md:block">Help/Privacy</p>
-                </div>
-                <div className="flex flex-row justify-center items-center gap-2">
+              <div className="md:flex flex-row justify-center items-center gap-8">
+                <div className="flex flex-row justify-center items-center gap-8">
                   <AiOutlineTwitter className="icon"></AiOutlineTwitter>
                   <BiLogoFacebookCircle className="icon"></BiLogoFacebookCircle>
                   <FaInstagramSquare className="icon"></FaInstagramSquare>
@@ -83,16 +81,18 @@ const Footer = () => {
 
               <div className="mt-8 footer-text">
                 <p>Subscribe to Leitmotif newsletter this very day.</p>
-                <form action="">
+                <form action="" className="flex items-center mt-5">
                   <input
-                    className="py-1 px-1 rounded-xl"
+                    className="focus-visible:outline-none text-black p-2 px-4 rounded-s-full"
                     type="email"
                     required
-                    placeholder="Email"
+                    placeholder="Enter email"
                   />
 
-                  <button className="bg-slate-800 rounded-full ml-2 p-2 mt-2 hover:bg-slate-500">
-                    <BsFillArrowUpRightCircleFill className=""></BsFillArrowUpRightCircleFill>
+                  <button className="primary-btn-bg px-3 py-3 rounded-e-full ">
+                    <BsFillArrowUpRightCircleFill
+                      size={20}
+                    ></BsFillArrowUpRightCircleFill>
                   </button>
                 </form>
               </div>
@@ -101,14 +101,14 @@ const Footer = () => {
 
           <hr className=" mt-8 "></hr>
 
-          <div className="copyright md:text-center mt-4">
+          <div className="copyright md:text-center py-4">
             <p>
-              Copyright <span>{moment().format("YYYY")}</span> by
+              &copy; Copyright <span>{moment().format("YYYY")}</span> by
               movietheater.com
             </p>
           </div>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 };

@@ -37,7 +37,7 @@ const Login = () => {
         <div className='bg-image'>
             <div className='bg-[#001232] bg-opacity-80 h-screen'>
                 <Helmet><title>Movie Theater | Login</title></Helmet>
-                <h2 className='text-center font-bold pt-12 pb-8 text-5xl'>Login</h2>
+                <h2 className='text-center font-bold pt-12 pb-8 text-3xl lg:text-5xl'>Login</h2>
                 <form onSubmit={handleLogin} className='flex justify-center'>
                     <div>
                         <div className='mb-4'>

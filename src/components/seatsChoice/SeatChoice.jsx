@@ -14,9 +14,9 @@ const SeatChoice = () => {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [axiosSecure] = useAxiosSecure()
+  const [axiosSecure] = useAxiosSecure();
   const [selectedSeats, setSelectedSeats] = useState([]);
-  const [selectedShowtime, setSelectedShowtime] = useState("");
+  const [selectedShowtime, setSelectedShowtime] = useState("morning");
 
   const [value, onChange] = useState(new Date());
 
@@ -40,7 +40,8 @@ const SeatChoice = () => {
     }
     const alreadySelected = selectedSeats.includes(index);
     if (alreadySelected) {
-      return toast.error("Already selected!");
+      const removedSelection = selectedSeats.filter((seat) => seat !== index);
+      setSelectedSeats([...removedSelection]);
     } else {
       setSelectedSeats((prev) => [...prev, index]);
     }
@@ -58,12 +59,7 @@ const SeatChoice = () => {
       showtime: selectedShowtime,
       selectedSeats: selectedSeats,
     };
-
-    console.log(bookingInfo);
-
   };
-
-
 
   return (
     <div className="flex flex-col gap-10">
@@ -90,7 +86,9 @@ const SeatChoice = () => {
                 value={value}
               />
             </div>
+          </div>
 
+          <div className="col-span-3 md:col-span-2 flex flex-col gap-5">
             {/* Showtime */}
             <div className="flex gap-5">
               <h4 className="text-xl">Showtime : </h4>
@@ -110,9 +108,6 @@ const SeatChoice = () => {
                 ))}
               </select>
             </div>
-          </div>
-
-          <div className="col-span-3 md:col-span-2 flex flex-col gap-5">
             {/* Available Seats system here */}
             <div className="flex gap-5 items-center">
               <h4 className="text-xl">Available Seats : </h4>
@@ -131,9 +126,9 @@ const SeatChoice = () => {
                   key={index}
                   className={`p-2 cursor-pointer hover:bg-blue-900 ${
                     selectedSeats?.includes(index + 1)
-                      ? "bg-blue-900 bg-opacity-100"
-                      : "bg-blue-950"
-                  }  bg-opacity-30 rounded-md`}
+                      ? "bg-blue-700 bg-opacity-100"
+                      : "bg-blue-950 bg-opacity-30"
+                  }   rounded-md`}
                 >
                   {item ? (
                     <div

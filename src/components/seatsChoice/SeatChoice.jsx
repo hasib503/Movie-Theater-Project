@@ -8,13 +8,13 @@ import { TbArmchair } from "react-icons/tb";
 import "./seats.css";
 import { AuthContext } from "../../provider/AuthProvider";
 import toast from "react-hot-toast";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+// import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const SeatChoice = () => {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [axiosSecure] = useAxiosSecure();
+  // const [axiosSecure] = useAxiosSecure();
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [selectedShowtime, setSelectedShowtime] = useState("morning");
 
@@ -23,10 +23,13 @@ const SeatChoice = () => {
   const { data: selectedMovie } = useQuery({
     queryKey: ["showtimeMovie"],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/bookingSeats/${id}`);
+      const res = await axios.get(`http://localhost:5000/bookingSeats/${id}/showtime/${selectedShowtime}`);
       return res.data;
     },
   });
+
+  console.log(selectedMovie);
+
 
   const handleShowtime = (e) => {
     setSelectedShowtime(e.target.value);

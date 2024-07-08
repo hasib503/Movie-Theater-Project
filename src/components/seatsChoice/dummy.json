@@ -1,0 +1,22 @@
+{
+  "_id": { "$oid": "6671a79b6516da64964079bb" },
+  "name": "The Nun II",
+  "poster": "https://i.ibb.co/5h08N1k/the-nun-ii-2-poster.webp",
+  "showingStatus": true,
+  "showTime": ["morning", "afternoon", "evening"],
+  "movieId": "65131489708a5265854462df",
+  "bookingTime": [
+    {
+      "time": "morning",
+      "morning_seats": [true, true, true, true, false, true, true, true]
+    },
+    {
+      "time": "afternoon",
+      "afternoon_seats": [true, true, true, true, false, true, true, true, true]
+    },
+    {
+      "time": "evening",
+      "evening_seats": [true, false, true, true, true, true, true, true, true]
+    }
+  ]
+}

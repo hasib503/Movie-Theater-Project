@@ -18,7 +18,7 @@ const SocialLogin = () => {
             .then(result => {
                 const loggedInUser = result.user;
                 // console.log(loggedInUser);
-                const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email }
+                const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email, memberSince: moment().format('LL') }
                 fetch('http://localhost:5000/users', {
                     method: 'POST',
                     headers: {
@@ -27,7 +27,7 @@ const SocialLogin = () => {
                     body: JSON.stringify(saveUser)
                 })
                     .then(res => res.json())
-                    .then(() => navigate(from, { replace: true }))
+                    .then(() => navigate('/'))
             })
     }
 

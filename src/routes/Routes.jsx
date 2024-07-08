@@ -13,6 +13,11 @@ import FoodCorner from "../pages/foodCorner/FoodCorner";
 import AboutUs from "../pages/aboutUs/AboutUs";
 import Dashboard from "../layouts/Dashboard";
 import AddMovie from "../pages/addMovie/AddMovie";
+import UserDashBoard from "../layouts/UserDashBoard"
+import TicketHistory from "../pages/UserDashboardPages/TicketHistory";
+import Favorite from "../pages/UserDashboardPages/Favorite";
+import Profile from "../pages/UserDashboardPages/Profile";
+import EditProfile from "../pages/UserDashboardPages/EditProfile";
 import AllMovies from "../pages/allMovies/AllMovies";
 import CreateShowingMovies from "../pages/createShowing/CreateShowingMovies";
 import AddShowtime from "../pages/createShowing/AddShowtime";

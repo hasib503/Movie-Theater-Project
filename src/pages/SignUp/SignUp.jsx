@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { AuthContext } from './../../provider/AuthProvider';
 import SocialLogin from './../../components/shared/SocialLogin/SocialLogin';
 import '../errorPage/errorPage.css'
+import moment from 'moment';
 
 const SignUp = () => {
 
@@ -18,12 +19,13 @@ const SignUp = () => {
         const photoURL = form.photoURL.value;
         const email = form.email.value;
         const password = form.password.value;
+        const memberSince = moment().format('LL')
 
         createUser(email, password)
             .then(result => {
                 updateUserProfile(name, photoURL)
                     .then(() => {
-                        const saveUser = { name: name, email: email }
+                        const saveUser = { name: name, email: email, memberSince: memberSince }
                         fetch('http://localhost:5000/users', {
                             method: 'POST',
                             headers: {

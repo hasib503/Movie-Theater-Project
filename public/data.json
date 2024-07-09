@@ -1,0 +1,54 @@
+[
+    
+    {
+      "name": "Black & White Twins",
+      "image": "https://i.ibb.co/MNkpvWv/1000-F-644309992-Udt-TP4-GFPFna-QRLEC1-UNsz-Y7-Yrf-R8-X7g.jpg",
+      "duration": "180 mins",
+      "category": "Action"
+      
+    },
+
+    {
+      "name": "Black & White Twins",
+      "image": "https://i.ibb.co/RvHrPts/spooky-scene-with-old-house.jpg",
+      "duration": "150 mins",
+      "category": "Action"
+      
+    },
+
+    {
+      "name": "Black & White Twins",
+      "image": "https://i.ibb.co/WBZTmD7/front-view-woman-working-as-ventriloquist.jpg",
+      "duration": "180 mins",
+      "category": "Comedy"
+    },
+
+    {
+      "name": "The Scariest Dream",
+      "image": "https://i.ibb.co/XCLmw0b/halloween-wallpaper-with-zombie-hand.jpg",
+      "duration": "180 mins",
+      "category": "Thriller"
+    },
+
+
+    {
+        "name": "The Witcher",
+        "image": "https://i.ibb.co/dkwRbcn/young-people-sitting-with-car-rabbit-masks-light-lamp-black-balloons.jpg",
+        "duration": "180 mins",
+        "category": "Action"
+    },
+
+    {
+        "name": "Wrong Turns ",
+        "image": "https://i.ibb.co/mzgVrhC/spooky-scene-with-man-floating-indoors.jpg",
+        "duration": "180 mins",
+        "category": "Thriller"
+    },
+
+    {
+        "name": "Mars",
+        "image": "https://i.ibb.co/6N0GHcs/portrait-scary-clown.jpg",
+        "duration": "180 mins",
+        "category": "Thriller"
+    }
+]    

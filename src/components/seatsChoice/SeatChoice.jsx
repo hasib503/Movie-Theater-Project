@@ -20,16 +20,15 @@ const SeatChoice = () => {
 
   const [value, onChange] = useState(new Date());
 
-  const { data: selectedMovie } = useQuery({
-    queryKey: ["showtimeMovie"],
+  const { data: showingMovie } = useQuery({
+    queryKey: ["showingMovie"],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/bookingSeats/${id}/showtime/${selectedShowtime}`);
+      const res = await axios.get(`http://localhost:5000/bookingSeats/${id}`);
       return res.data;
     },
   });
 
-  console.log(selectedMovie);
-
+  const { showtime = [] } = showingMovie || {};
 
   const handleShowtime = (e) => {
     setSelectedShowtime(e.target.value);
@@ -56,8 +55,8 @@ const SeatChoice = () => {
     const bookingInfo = {
       userName: user?.displayName,
       userEmail: user?.email,
-      selectedMovie: selectedMovie?.name,
-      moviePoster: selectedMovie?.poster,
+      showingMovie: showingMovie?.name,
+      moviePoster: showingMovie?.poster,
       date: value,
       showtime: selectedShowtime,
       selectedSeats: selectedSeats,
@@ -69,14 +68,14 @@ const SeatChoice = () => {
       <div className=" lg:h-[500px]">
         <img
           className="h-full w-full object-cover"
-          src={selectedMovie?.poster}
+          src={showingMovie?.poster}
           alt="Main Poster"
         />
       </div>
 
       <div className="flex flex-col gap-10">
         <h2 className="text-4xl bg-gradient-to-r from-[#d42a2a] to-[#rgb(0 18 50)] font-light inline-block px-3 py-0.5">
-          {selectedMovie?.name}
+          {showingMovie?.name}
         </h2>
 
         <div className="grid grid-cols-3 md:gap-8 lg:gap-10">
@@ -100,7 +99,7 @@ const SeatChoice = () => {
                 value={selectedShowtime}
                 onChange={handleShowtime}
               >
-                {selectedMovie?.showTime?.map((item, index) => (
+                {showtime?.map((item, index) => (
                   <option
                     className="bg-transparent cursor-pointer text-black"
                     key={index}
@@ -124,7 +123,7 @@ const SeatChoice = () => {
               </p>
             </div>
             <div className="flex flex-wrap gap-2 justify-between">
-              {selectedMovie?.availableSeats?.map((item, index) => (
+              {showingMovie?.availableSeats?.map((item, index) => (
                 <div
                   key={index}
                   className={`p-2 cursor-pointer hover:bg-blue-900 ${

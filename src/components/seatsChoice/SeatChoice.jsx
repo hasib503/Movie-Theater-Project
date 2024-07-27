@@ -1,14 +1,18 @@
 import axios from "axios";
 import { useQuery } from "react-query";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { TbArmchair } from "react-icons/tb";
 import "./seats.css";
 import { AuthContext } from "../../provider/AuthProvider";
 import toast from "react-hot-toast";
 // import useAxiosSecure from "../../hooks/useAxiosSecure";
+
+function useNewQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 const SeatChoice = () => {
   const { id } = useParams();
@@ -16,7 +20,10 @@ const SeatChoice = () => {
   const navigate = useNavigate();
   // const [axiosSecure] = useAxiosSecure();
   const [selectedSeats, setSelectedSeats] = useState([]);
-  const [selectedShowtime, setSelectedShowtime] = useState("morning");
+  // const [selectedShowtime, setSelectedShowtime] = useState("morning");
+
+  let query = useNewQuery();
+  const selectedShowtime = query.get("showtime") || "morning";
 
   const [value, onChange] = useState(new Date());
 
@@ -28,11 +35,27 @@ const SeatChoice = () => {
     },
   });
 
+  const { data, refetch, isLoading } = useQuery({
+    queryKey: ["showtime"],
+    queryFn: async () => {
+      const res = await axios.get(
+        `http://localhost:5000/bookingSeats/${id}/showtime/${selectedShowtime}`
+      );
+      return res.data;
+    },
+  });
+  const seats = data?.seats;
+
+  useEffect(() => {
+    refetch();
+  }, [refetch, selectedShowtime]);
+
   const { showtime = [] } = showingMovie || {};
 
-  const handleShowtime = (e) => {
-    setSelectedShowtime(e.target.value);
-  };
+  // const handleShowtime = (e) => {
+  //   setSelectedShowtime(e.target.value);
+  //   showtimeRefetch();
+  // };
 
   // Handle Seat selection button here:
   const handleSeatBook = (index) => {
@@ -61,6 +84,7 @@ const SeatChoice = () => {
       showtime: selectedShowtime,
       selectedSeats: selectedSeats,
     };
+    console.log(bookingInfo);
   };
 
   return (
@@ -97,7 +121,9 @@ const SeatChoice = () => {
               <select
                 className="bg-transparent border rounded-md p-1 text-white"
                 value={selectedShowtime}
-                onChange={handleShowtime}
+                onChange={(e) => {
+                  navigate(`?showtime=${e.target.value}`);
+                }}
               >
                 {showtime?.map((item, index) => (
                   <option
@@ -122,32 +148,34 @@ const SeatChoice = () => {
                 <span>Available</span>
               </p>
             </div>
-            <div className="flex flex-wrap gap-2 justify-between">
-              {showingMovie?.availableSeats?.map((item, index) => (
-                <div
-                  key={index}
-                  className={`p-2 cursor-pointer hover:bg-blue-900 ${
-                    selectedSeats?.includes(index + 1)
-                      ? "bg-blue-700 bg-opacity-100"
-                      : "bg-blue-950 bg-opacity-30"
-                  }   rounded-md`}
-                >
-                  {item ? (
+            <div className="flex flex-wrap gap-2 justify-start">
+              {isLoading
+                ? "Loading..."
+                : seats?.map((item, index) => (
                     <div
-                      onClick={() => handleSeatBook(index + 1)}
-                      className="flex flex-col items-center w-10"
+                      key={index}
+                      className={`p-2 cursor-pointer hover:bg-blue-900 ${
+                        selectedSeats?.includes(index + 1)
+                          ? "bg-blue-700 bg-opacity-100"
+                          : "bg-blue-950 bg-opacity-30"
+                      }   rounded-md`}
                     >
-                      <TbArmchair />
-                      <span>C-{index + 1}</span>
+                      {item ? (
+                        <div
+                          onClick={() => handleSeatBook(index + 1)}
+                          className="flex flex-col items-center w-10"
+                        >
+                          <TbArmchair />
+                          <span>C-{index + 1}</span>
+                        </div>
+                      ) : (
+                        <div className="flex flex-col items-center cursor-not-allowed w-10">
+                          <TbArmchair className=" text-red-600" />
+                          <span className="text-red-600">C-{index + 1}</span>
+                        </div>
+                      )}
                     </div>
-                  ) : (
-                    <div className="flex flex-col items-center cursor-not-allowed w-10">
-                      <TbArmchair className=" text-red-600" />
-                      <span className="text-red-600">C-{index + 1}</span>
-                    </div>
-                  )}
-                </div>
-              ))}
+                  ))}
             </div>
             {/* Confirm booking area */}
             <button

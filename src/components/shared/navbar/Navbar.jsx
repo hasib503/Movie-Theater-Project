@@ -36,14 +36,6 @@ const Navbar = () => {
         </Link>
       </li>
       <li>
-        <Link
-          to="/movieDetails"
-          className="hover:bg-[#071952] hover:text-white"
-        >
-          Movie Details
-        </Link>
-      </li>
-      <li>
         <Link to="/ticketPrice" className="hover:bg-[#071952] hover:text-white">
           Ticket Price
         </Link>
@@ -63,24 +55,6 @@ const Navbar = () => {
           About Us
         </Link>
       </li>
-      <li>
-        <Link
-          to="/dashboard/addMovie"
-          className="hover:bg-[#071952] hover:text-white"
-        >
-          Dashboard
-        </Link>
-      </li>
-      {user && (
-        <li>
-          <Link
-            onClick={handleLogOut}
-            className="hover:bg-[#071952] hover:text-white"
-          >
-            Log Out
-          </Link>
-        </li>
-      )}
     </>
   );
 
@@ -144,8 +118,10 @@ const Navbar = () => {
                   <Link className="hover:bg-[#071952] p-2">
                     <a>Profile</a>
                   </Link>
-                  <Link className="hover:bg-[#071952] p-2">
-                    <a>Dashboard</a>
+                  <Link
+                    to="/dashboard/addMovie"
+                    className="hover:bg-[#071952] p-2">
+                    Dashboard
                   </Link>
                   <Link
                     onClick={handleLogOut}

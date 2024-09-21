@@ -9,7 +9,7 @@ const LatestMovies = () => {
   const { data: latestMoves, isLoading } = useQuery({
     queryKey: ["latestMovies"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:5000/latestMovies");
+      const res = await axios.get("/movie/latestMovies");
       return res.data;
     },
   });

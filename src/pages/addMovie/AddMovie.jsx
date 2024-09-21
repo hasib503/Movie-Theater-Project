@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import DashboardHeading from "../../components/dash-header/DashboardHeading";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 import Select from "react-select";
 import "./style.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import toast from "react-hot-toast";
-// import axios from "axios";
+import axios from "axios";
 
 const imgbb_hosting_img = import.meta.env.VITE_IMG_HOST;
 
@@ -42,6 +41,9 @@ const AddMovie = () => {
   const [cast, setCast] = useState([]);
   const [castName, setCastName] = useState("");
   const [castImage, setCastImage] = useState("");
+  const [posterUrl, setPosterUrl] = useState("asd");
+  const [coverUrl, setCoverUrl] = useState("sd");
+
 
   const {
     register,
@@ -87,69 +89,6 @@ const AddMovie = () => {
   // IMAGE HOSTING URL
   const hosted_img_url = `https://api.imgbb.com/1/upload?key=${imgbb_hosting_img}`;
 
-  // Main submit button handler
-  const onSubmit = (data) => {
-    const formData = new FormData();
-    formData.append("image", data.cover[0]);
-
-    fetch(hosted_img_url, {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((imgResponse) => {
-        if (imgResponse.success) {
-          const coverImageUrl = imgResponse.data.display_url;
-          const formData2 = new FormData();
-          formData2.append("image", data.poster[0]);
-
-          fetch(hosted_img_url, {
-            method: "POST",
-            body: formData2,
-          })
-            .then((res) => res.json())
-            .then((imgResponse) => {
-              if (imgResponse.success) {
-                const posterImageUrl = imgResponse.data.display_url;
-                const newMovieData = {
-                  cover: coverImageUrl,
-                  poster: posterImageUrl,
-                  name: data.name,
-                  storyline: data.storyline,
-                  genres: selectGenres,
-                  releaseDate: selectedDate,
-                  runtime: data.runtime,
-                  category: selectCategory,
-                  language: selectLanguage,
-                  trailer: data.trailer,
-                  imdb_rating: data.rating,
-                  Director: data.director,
-                  Writer: data.writer,
-                  casts: cast,
-                };
-                fetch("http://localhost:5000/addMovie", {
-                  method: "POST",
-                  headers: {
-                    "content-type": "application/json",
-                  },
-                  body: JSON.stringify(newMovieData),
-                })
-                  .then((res) => res.json())
-                  .then((data) => {
-                    if (data) {
-                      toast.success("Movie added successfully");
-                      console.log(data);
-                    }
-                  })
-                  .catch((err) => {
-                    console.log(err.message);
-                  });
-              }
-            });
-        }
-      });
-  };
-
   const handleCast = (e) => {
     e.preventDefault();
 
@@ -164,10 +103,60 @@ const AddMovie = () => {
         if (imgResponse.success) {
           const castImageUrl = imgResponse.data.display_url;
           const newCast = { name: castName, url: castImageUrl };
-
           setCast([...cast, newCast]);
         }
       });
+  };
+
+
+
+  // Main submit
+  const onSubmit = (data) => {
+    const formData = {
+      name: data.name,
+      poster: posterUrl,
+      cover: coverUrl,
+      storyline: data.storyline,
+      genres: selectGenres,
+      releaseDate: selectedDate,
+      runtime: data.runtime,
+      category: selectCategory,
+      language: selectLanguage,
+      trailer: data.trailer,
+      imdb_rating: data.rating,
+    }
+
+    axios.post("/admin/addMovie", formData).then(result =>{
+      console.log(result);
+      
+    })
+
+
+
+
+    // fetch(hosted_img_url, {
+    //   method: "POST",
+    //   body: formData,
+    // })
+    //   .then((res) => res.json())
+    //   .then((imgResponse) => {
+    //     if (imgResponse.success) {
+    //       const coverImageUrl = imgResponse.data.display_url;
+
+    //     }
+    //   });
+
+
+    // fetch(hosted_img_url, {
+    //   method: "POST",
+    //   body: formData2,
+    // })
+    //   .then((res) => res.json())
+    //   .then((imgResponse) => {
+    //     if (imgResponse.success) {
+    //       const posterImageUrl = imgResponse.data.display_url;
+    //     }
+    //   });
   };
 
   return (

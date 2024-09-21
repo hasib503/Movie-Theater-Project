@@ -6,49 +6,64 @@ const TicketPrice = () => {
 
   let movieTickets = [
     {
-      "id": 1,
-      "status": "empty",
-      "movie": "Example Movie",
-      "time": "19:00",
-      "date": "2024-07-05",
-      "seat": "A1",
-      "price": 12.5
+      id: 1,
+      serial: "A1",
+      status: "empty",
+      showTime: 3,
+      movie: "Example Movie",
+      time: "19:00",
+      date: "2024-07-05",
+      price: 12.5,
+      coustomer: ["id1", "name1"],
+      trxId: "trxID1"
     },
     {
-      "id": 2,
-      "status": "empty",
-      "movie": "Example Movie",
-      "time": "19:00",
-      "date": "2024-07-05",
-      "seat": "A2",
-      "price": 12.5
+      id: 2,
+      serial: "A2",
+      status: "empty",
+      showTime: 3,
+      movie: "Example Movie",
+      time: "19:00",
+      date: "2024-07-05",
+      price: 12.5,
+      coustomer: ["id2", "name2"],
+      trxId: "trxID2"
     },
     {
-      "id": 3,
-      "status": "empty",
-      "movie": "Example Movie",
-      "time": "19:00",
-      "date": "2024-07-05",
-      "seat": "A3",
-      "price": 12.5
+      id: 3,
+      serial: "A3",
+      status: "empty",
+      showTime: 3,
+      movie: "Example Movie",
+      time: "19:00",
+      date: "2024-07-05",
+      price: 12.5,
+      coustomer: ["id3", "name3"],
+      trxId: "trxID3"
     },
     {
-      "id": 4,
-      "status": "booked",
-      "movie": "Example Movie",
-      "time": "19:00",
-      "date": "2024-07-05",
-      "seat": "A4",
-      "price": 12.5
+      id: 4,
+      serial: "A4",
+      status: "booked",
+      showTime: 3,
+      movie: "Example Movie",
+      time: "19:00",
+      date: "2024-07-05",
+      price: 12.5,
+      coustomer: ["id4", "name4"],
+      trxId: "trxID4"
     },
     {
-      "id": 5,
-      "status": "empty",
-      "movie": "Example Movie",
-      "time": "19:00",
-      "date": "2024-07-05",
-      "seat": "A5",
-      "price": 12.5
+      id: 5,
+      serial: "A5",
+      status: "empty",
+      showTime: 3,
+      movie: "Example Movie",
+      time: "19:00",
+      date: "2024-07-05",
+      price: 12.5,
+      coustomer: ["id5", "name5"],
+      trxId: "trxID5"
     }
   ]
 

@@ -7,8 +7,11 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import toast from "react-hot-toast";
 import axios from "axios";
+import useImgBB from "../../hooks/useImgBB";
 
 const imgbb_hosting_img = import.meta.env.VITE_IMG_HOST;
+const hosted_img_url = `https://api.imgbb.com/1/upload?key=${imgbb_hosting_img}`;
+
 
 // Genres
 const genres = [
@@ -86,8 +89,6 @@ const AddMovie = () => {
     setSelectedDate(date);
   };
 
-  // IMAGE HOSTING URL
-  const hosted_img_url = `https://api.imgbb.com/1/upload?key=${imgbb_hosting_img}`;
 
   const handleCast = (e) => {
     e.preventDefault();
@@ -112,39 +113,32 @@ const AddMovie = () => {
 
   // Main submit
   const onSubmit = (data) => {
-    const formData = {
-      name: data.name,
-      poster: posterUrl,
-      cover: coverUrl,
-      storyline: data.storyline,
-      genres: selectGenres,
-      releaseDate: selectedDate,
-      runtime: data.runtime,
-      category: selectCategory,
-      language: selectLanguage,
-      trailer: data.trailer,
-      imdb_rating: data.rating,
-    }
+    // const formData = {
+    //   name: data.name,
+    //   poster: posterUrl,
+    //   cover: coverUrl,
+    //   storyline: data.storyline,
+    //   genres: selectGenres,
+    //   releaseDate: selectedDate,
+    //   runtime: data.runtime,
+    //   category: selectCategory,
+    //   language: selectLanguage,
+    //   trailer: data.trailer,
+    //   imdb_rating: data.rating,
+    // }
 
-    axios.post("/admin/addMovie", formData).then(result =>{
-      console.log(result);
+    // axios.post("/admin/addMovie", formData).then(result =>{
+    //   console.log(result);
       
-    })
-
-
-
-
-    // fetch(hosted_img_url, {
-    //   method: "POST",
-    //   body: formData,
     // })
-    //   .then((res) => res.json())
-    //   .then((imgResponse) => {
-    //     if (imgResponse.success) {
-    //       const coverImageUrl = imgResponse.data.display_url;
 
-    //     }
-    //   });
+    // console.log(data.poster[0]);
+    
+
+
+
+
+
 
 
     // fetch(hosted_img_url, {
@@ -157,6 +151,14 @@ const AddMovie = () => {
     //       const posterImageUrl = imgResponse.data.display_url;
     //     }
     //   });
+
+    const formData = new FormData();
+    formData.append("image", data.cover[0]);
+
+   
+
+    useImgBB(formData)
+    
   };
 
   return (

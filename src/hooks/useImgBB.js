@@ -1,7 +1,7 @@
 const imgbb_hosting_img = import.meta.env.VITE_IMG_HOST;
 const hosted_img_url = `https://api.imgbb.com/1/upload?key=${imgbb_hosting_img}`;
 
-const useImgBB = (formData) => {
+const useImgBB = async (formData) => {
     fetch(hosted_img_url, {
         method: "POST",
         body: formData,

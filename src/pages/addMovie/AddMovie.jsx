@@ -44,8 +44,8 @@ const AddMovie = () => {
   const [cast, setCast] = useState([]);
   const [castName, setCastName] = useState("");
   const [castImage, setCastImage] = useState("");
-  const [posterUrl, setPosterUrl] = useState("asd");
-  const [coverUrl, setCoverUrl] = useState("sd");
+  const [posterUrl, setPosterUrl] = useState("");
+  const [coverUrl, setCoverUrl] = useState("");
 
 
   const {
@@ -113,304 +113,309 @@ const AddMovie = () => {
 
   // Main submit
   const onSubmit = (data) => {
-    // const formData = {
-    //   name: data.name,
-    //   poster: posterUrl,
-    //   cover: coverUrl,
-    //   storyline: data.storyline,
-    //   genres: selectGenres,
-    //   releaseDate: selectedDate,
-    //   runtime: data.runtime,
-    //   category: selectCategory,
-    //   language: selectLanguage,
-    //   trailer: data.trailer,
-    //   imdb_rating: data.rating,
-    // }
 
-    // axios.post("/admin/addMovie", formData).then(result =>{
-    //   console.log(result);
+
+    try {
+      // uploading cover image and setitng url as string
+      const formData = new FormData();
+      formData.append("image", data?.cover[0]); // here data.cover[0]
+
+      const coverUrl = useImgBB(formData);
+      setCoverUrl(coverUrl);
+
+      console.log(cover);
       
-    // })
 
-    // console.log(data.poster[0]);
+
+      const formData2 = new FormData();
+      formData2.append("image", data.poster[0]); // here data.poster[0]
+      setPosterUrl(useImgBB(formData2))
+
+      console.log(poster);
+      console.log("in try bock");
+      
+      
+
+
+
+    } catch (error) {
+      console.error('Error uploading images or calling API:', error);
+    }
+
+    const movieData = {
+      name: data.name,
+      poster: posterUrl,
+      cover: coverUrl,
+      storyline: data.storyline,
+      genres: selectGenres,
+      releaseDate: selectedDate,
+      runtime: data.runtime,
+      category: selectCategory,
+      language: selectLanguage,
+      trailer: data.trailer,
+      imdb_rating: data.rating,
+    }
+
+
+    console.log('before axios post');
     
 
+    axios.post("/admin/addMovie", movieData).then(result => {
+      console.log(result);
 
-
-
-
-
-
-    // fetch(hosted_img_url, {
-    //   method: "POST",
-    //   body: formData2,
-    // })
-    //   .then((res) => res.json())
-    //   .then((imgResponse) => {
-    //     if (imgResponse.success) {
-    //       const posterImageUrl = imgResponse.data.display_url;
-    //     }
-    //   });
-
-    const formData = new FormData();
-    formData.append("image", data.cover[0]);
-
-   
-
-    useImgBB(formData)
-    
+    })
   };
 
   return (
     <div className="">
-      <div className="mb-5">
-        <DashboardHeading title={"Add Movie"}></DashboardHeading>
-      </div>
-      <div>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 lg:gap-10">
-            <div className="">
-              {/* Name */}
-              <div className="flex flex-col space-y-2 mb-4">
-                <label htmlFor="">Movie Name</label>
-                <input
-                  className="glass-bg focus-visible:outline-none p-2"
-                  type="text"
-                  placeholder="Movie name"
-                  {...register("name", { required: true })}
-                />
-                {errors.name && (
-                  <span className="text-red-600">Name is required</span>
-                )}
-              </div>
-              {/* Poster */}
-              <div className="flex flex-col space-y-2 mb-4">
-                <label htmlFor="">Movie Poster</label>
-                <input
-                  className="glass-bg focus-visible:outline-none p-2"
-                  type="file"
-                  placeholder="Movie poster"
-                  {...register("poster", { required: true })}
-                />
-                {errors.poster && (
-                  <span className="text-red-600">Poster is required</span>
-                )}
-              </div>
-              {/* Cover */}
-              <div className="flex flex-col space-y-2 mb-4">
-                <label htmlFor="">Movie cover</label>
-                <input
-                  className="glass-bg focus-visible:outline-none p-2"
-                  type="file"
-                  placeholder="Movie cover"
-                  {...register("cover", { required: true })}
-                />
-                {errors.cover && (
-                  <span className="text-red-600">Poster is required</span>
-                )}
-              </div>
-              {/* Genres */}
-              <div className="flex flex-col space-y-2 mb-4">
-                <label htmlFor="">Movie Genres</label>
-                <Select
-                  styles={{
-                    control: (baseStyles, state) => ({
-                      ...baseStyles,
-                      backgroundColor: state.isFocused ? "#1b2e54" : "#1b2e54",
-                    }),
-                  }}
-                  options={genres}
-                  value={selectGenres}
-                  onChange={handleGenresChange}
-                  isMulti={true}
-                ></Select>
-              </div>
-              {/* Release Date */}
-              <div className="flex flex-col space-y-2 mb-4">
-                <label htmlFor="">Movie Release Date</label>
-                <DatePicker
-                  id="dateInput"
-                  selected={selectedDate}
-                  onChange={handleDateChange}
-                  dateFormat="EEE, d MMMM"
-                  showYearDropdown={false}
-                  placeholderText="Select a date"
-                  className="focus-visible:outline-none text-white glass-bg p-2 w-full"
-                />
-                {errors.release_date && (
-                  <span className="text-red-600">Poster is required</span>
-                )}
-              </div>
-              {/* IMDB Rating */}
-              <div className="flex flex-col space-y-2 mb-4">
-                <label htmlFor="">Movie Rating</label>
-                <input
-                  className="glass-bg focus-visible:outline-none p-2"
-                  type="number"
-                  placeholder="Enter rating"
-                  {...register("rating", { required: true })}
-                />
-                {errors.rating && (
-                  <span className="text-red-600">Rating is required</span>
-                )}
-              </div>
-              {/* Director */}
-              <div className="flex flex-col space-y-2 mb-4">
-                <label htmlFor="">Movie Director</label>
-                <input
-                  className="glass-bg focus-visible:outline-none p-2"
-                  type="text"
-                  placeholder="Enter director"
-                  {...register("director", { required: true })}
-                />
-                {errors.director && (
-                  <span className="text-red-600">Director is required</span>
-                )}
-              </div>
+    <div className="mb-5">
+      <DashboardHeading title={"Add Movie"}></DashboardHeading>
+    </div>
+    <div>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 lg:gap-10">
+          <div className="">
+            {/* Name */}
+            <div className="flex flex-col space-y-2 mb-4">
+              <label htmlFor="">Movie Name</label>
+              <input
+                className="glass-bg focus-visible:outline-none p-2"
+                type="text"
+                placeholder="Movie name"
+                {...register("name", { required: true })}
+              />
+              {errors.name && (
+                <span className="text-red-600">Name is required</span>
+              )}
             </div>
-            {/* Column 2 */}
-            <div>
-              {/* Storyline */}
-              <div className="flex flex-col space-y-2 mb-4">
-                <label htmlFor="">Movie Storyline</label>
-                <input
-                  className="glass-bg focus-visible:outline-none p-2"
-                  type="text"
-                  placeholder="Movie storyline"
-                  {...register("storyline", { required: true })}
-                />
-                {errors.storyline && (
-                  <span className="text-red-600">storyline is required</span>
-                )}
-              </div>
-              {/* Runtime*/}
-              <div className="flex flex-col space-y-2 mb-4">
-                <label htmlFor="">Movie Runtime</label>
-                <input
-                  className="glass-bg focus-visible:outline-none p-2"
-                  type="text"
-                  placeholder="Movie runtime"
-                  {...register("runtime", { required: true })}
-                />
-                {errors.runtime && (
-                  <span className="text-red-600">runtime is required</span>
-                )}
-              </div>
-              {/* Category */}
-              <div className="flex flex-col space-y-2 mb-4">
-                <label htmlFor="">Movie Category</label>
-                <Select
-                  styles={{
-                    control: (baseStyles, state) => ({
-                      ...baseStyles,
-                      backgroundColor: state.isFocused ? "#1b2e54" : "#1b2e54",
-                    }),
-                  }}
-                  options={categories}
-                  value={selectCategory}
-                  onChange={handleCategoryChange}
-                  isMulti={true}
-                ></Select>
-                {errors.category && (
-                  <span className="text-red-600">category is required</span>
-                )}
-              </div>
-              {/* Language */}
-              <div className="flex flex-col space-y-2 mb-4">
-                <label htmlFor="">Movie language</label>
-                <Select
-                  styles={{
-                    control: (baseStyles, state) => ({
-                      ...baseStyles,
-                      backgroundColor: state.isFocused ? "#1b2e54" : "#1b2e54",
-                    }),
-                  }}
-                  options={languages}
-                  value={selectLanguage}
-                  onChange={handleLanguageChange}
-                  isMulti={true}
-                ></Select>
-                {errors.language && (
-                  <span className="text-red-600">language is required</span>
-                )}
-              </div>
-              {/* Trailer */}
-              <div className="flex flex-col space-y-2 mb-4">
-                <label htmlFor="">Movie Trailer</label>
-                <input
-                  className="glass-bg focus-visible:outline-none p-2"
-                  type="link"
-                  placeholder="Enter link"
-                  {...register("trailer", { required: true })}
-                />
-                {errors.trailer && (
-                  <span className="text-red-600">trailer is required</span>
-                )}
-              </div>
-              {/* Writer */}
-              <div className="flex flex-col space-y-2 mb-4">
-                <label htmlFor="">Movie Writer</label>
-                <input
-                  className="glass-bg focus-visible:outline-none p-2"
-                  type="link"
-                  placeholder="Enter writer name"
-                  {...register("writer", { required: true })}
-                />
-                {errors.writer && (
-                  <span className="text-red-600">writer is required</span>
-                )}
-              </div>
-              {/* Casts */}
-              <div className="flex flex-col space-y-2 mb-4">
-                <label htmlFor="">Movie Cast</label>
-                {castData?.map((cast, index) => (
-                  <div
-                    onSubmit={handleCastImageUpload}
-                    key={index}
-                    className="flex flex-row gap-2 duration-300 transition-all"
-                  >
-                    <input
-                      className="glass-bg p-2 border focus-visible:outline-none"
-                      type="text"
-                      placeholder="Cast name"
-                      name="castName"
-                      onChange={(e) => setCastName(e.target.value)}
-                    />
-                    <input
-                      className="glass-bg p-1 border focus-visible:outline-none"
-                      type="file"
-                      placeholder="Cast photo"
-                      onChange={(e) => setCastImage(e.target.files[0])}
-                    />
-                    <button
-                      type="submit"
-                      onClick={(e) => handleCast(e)}
-                      className="border p-1"
-                    >
-                      upload
-                    </button>
-                  </div>
-                ))}
-                <div className="inline-block">
+            {/* Poster */}
+            <div className="flex flex-col space-y-2 mb-4">
+              <label htmlFor="">Movie Poster</label>
+              <input
+                className="glass-bg focus-visible:outline-none p-2"
+                type="file"
+                placeholder="Movie poster"
+                {...register("poster", { required: true })}
+              />
+              {errors.poster && (
+                <span className="text-red-600">Poster is required</span>
+              )}
+            </div>
+            {/* Cover */}
+            <div className="flex flex-col space-y-2 mb-4">
+              <label htmlFor="">Movie cover</label>
+              <input
+                className="glass-bg focus-visible:outline-none p-2"
+                type="file"
+                placeholder="Movie cover"
+                {...register("cover", { required: true })}
+              />
+              {errors.cover && (
+                <span className="text-red-600">Poster is required</span>
+              )}
+            </div>
+            {/* Genres */}
+            <div className="flex flex-col space-y-2 mb-4">
+              <label htmlFor="">Movie Genres</label>
+              <Select
+                styles={{
+                  control: (baseStyles, state) => ({
+                    ...baseStyles,
+                    backgroundColor: state.isFocused ? "#1b2e54" : "#1b2e54",
+                  }),
+                }}
+                options={genres}
+                value={selectGenres}
+                onChange={handleGenresChange}
+                isMulti={true}
+              ></Select>
+            </div>
+            {/* Release Date */}
+            <div className="flex flex-col space-y-2 mb-4">
+              <label htmlFor="">Movie Release Date</label>
+              <DatePicker
+                id="dateInput"
+                selected={selectedDate}
+                onChange={handleDateChange}
+                dateFormat="EEE, d MMMM"
+                showYearDropdown={false}
+                placeholderText="Select a date"
+                className="focus-visible:outline-none text-white glass-bg p-2 w-full"
+              />
+              {errors.release_date && (
+                <span className="text-red-600">Poster is required</span>
+              )}
+            </div>
+            {/* IMDB Rating */}
+            <div className="flex flex-col space-y-2 mb-4">
+              <label htmlFor="">Movie Rating</label>
+              <input
+                className="glass-bg focus-visible:outline-none p-2"
+                type="number"
+                placeholder="Enter rating"
+                {...register("rating", { required: true })}
+              />
+              {errors.rating && (
+                <span className="text-red-600">Rating is required</span>
+              )}
+            </div>
+            {/* Director */}
+            <div className="flex flex-col space-y-2 mb-4">
+              <label htmlFor="">Movie Director</label>
+              <input
+                className="glass-bg focus-visible:outline-none p-2"
+                type="text"
+                placeholder="Enter director"
+                {...register("director", { required: true })}
+              />
+              {errors.director && (
+                <span className="text-red-600">Director is required</span>
+              )}
+            </div>
+          </div>
+          {/* Column 2 */}
+          <div>
+            {/* Storyline */}
+            <div className="flex flex-col space-y-2 mb-4">
+              <label htmlFor="">Movie Storyline</label>
+              <input
+                className="glass-bg focus-visible:outline-none p-2"
+                type="text"
+                placeholder="Movie storyline"
+                {...register("storyline", { required: true })}
+              />
+              {errors.storyline && (
+                <span className="text-red-600">storyline is required</span>
+              )}
+            </div>
+            {/* Runtime*/}
+            <div className="flex flex-col space-y-2 mb-4">
+              <label htmlFor="">Movie Runtime</label>
+              <input
+                className="glass-bg focus-visible:outline-none p-2"
+                type="text"
+                placeholder="Movie runtime"
+                {...register("runtime", { required: true })}
+              />
+              {errors.runtime && (
+                <span className="text-red-600">runtime is required</span>
+              )}
+            </div>
+            {/* Category */}
+            <div className="flex flex-col space-y-2 mb-4">
+              <label htmlFor="">Movie Category</label>
+              <Select
+                styles={{
+                  control: (baseStyles, state) => ({
+                    ...baseStyles,
+                    backgroundColor: state.isFocused ? "#1b2e54" : "#1b2e54",
+                  }),
+                }}
+                options={categories}
+                value={selectCategory}
+                onChange={handleCategoryChange}
+                isMulti={true}
+              ></Select>
+              {errors.category && (
+                <span className="text-red-600">category is required</span>
+              )}
+            </div>
+            {/* Language */}
+            <div className="flex flex-col space-y-2 mb-4">
+              <label htmlFor="">Movie language</label>
+              <Select
+                styles={{
+                  control: (baseStyles, state) => ({
+                    ...baseStyles,
+                    backgroundColor: state.isFocused ? "#1b2e54" : "#1b2e54",
+                  }),
+                }}
+                options={languages}
+                value={selectLanguage}
+                onChange={handleLanguageChange}
+                isMulti={true}
+              ></Select>
+              {errors.language && (
+                <span className="text-red-600">language is required</span>
+              )}
+            </div>
+            {/* Trailer */}
+            <div className="flex flex-col space-y-2 mb-4">
+              <label htmlFor="">Movie Trailer</label>
+              <input
+                className="glass-bg focus-visible:outline-none p-2"
+                type="link"
+                placeholder="Enter link"
+                {...register("trailer", { required: true })}
+              />
+              {errors.trailer && (
+                <span className="text-red-600">trailer is required</span>
+              )}
+            </div>
+            {/* Writer */}
+            <div className="flex flex-col space-y-2 mb-4">
+              <label htmlFor="">Movie Writer</label>
+              <input
+                className="glass-bg focus-visible:outline-none p-2"
+                type="link"
+                placeholder="Enter writer name"
+                {...register("writer", { required: true })}
+              />
+              {errors.writer && (
+                <span className="text-red-600">writer is required</span>
+              )}
+            </div>
+            {/* Casts */}
+            <div className="flex flex-col space-y-2 mb-4">
+              <label htmlFor="">Movie Cast</label>
+              {castData?.map((cast, index) => (
+                <div
+                  onSubmit={handleCastImageUpload}
+                  key={index}
+                  className="flex flex-row gap-2 duration-300 transition-all"
+                >
+                  <input
+                    className="glass-bg p-2 border focus-visible:outline-none"
+                    type="text"
+                    placeholder="Cast name"
+                    name="castName"
+                    onChange={(e) => setCastName(e.target.value)}
+                  />
+                  <input
+                    className="glass-bg p-1 border focus-visible:outline-none"
+                    type="file"
+                    placeholder="Cast photo"
+                    onChange={(e) => setCastImage(e.target.files[0])}
+                  />
                   <button
-                    onClick={(e) => handleAddCast(e)}
-                    className="border p-1 "
+                    type="submit"
+                    onClick={(e) => handleCast(e)}
+                    className="border p-1"
                   >
-                    Add cast
+                    upload
                   </button>
                 </div>
+              ))}
+              <div className="inline-block">
+                <button
+                  onClick={(e) => handleAddCast(e)}
+                  className="border p-1 "
+                >
+                  Add cast
+                </button>
               </div>
             </div>
           </div>
-          <div>
-            <button type="submit" className="primary-btn-bg  px-5 py-2">
-              Add Movie
-            </button>
-          </div>
-        </form>
-      </div>
+        </div>
+        <div>
+          <button type="submit" className="primary-btn-bg  px-5 py-2">
+            Add Movie
+          </button>
+        </div>
+      </form>
     </div>
-  );
+  </div>
+);
 };
 
 export default AddMovie;
